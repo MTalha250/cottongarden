@@ -3,8 +3,8 @@ import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
 export const metadata: Metadata = {
-  title: "Dashboard | GymGEAR Admin",
-  description: "GymGEAR Admin Dashboard",
+  title: "Dashboard | Cotton Garden Admin",
+  description: "Cotton Garden Admin Dashboard",
 };
 
 export default function Home() {

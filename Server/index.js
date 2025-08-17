@@ -29,9 +29,8 @@ app.use(
     origin: [
       "http://localhost:3000",
       "http://localhost:3001",
-      "https://www.gymgear.pk",
-      "https://gymgear-admin.vercel.app",
-      "https://gymgear.vercel.app",
+      "https://cottongarden-admin.vercel.app",
+      "https://cottongarden.vercel.app",
     ],
   })
 );

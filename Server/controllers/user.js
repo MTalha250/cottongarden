@@ -138,7 +138,7 @@ export const sendCode = async (req, res) => {
     });
     const mailOptions = {
       from: {
-        name: "GYMGear",
+        name: "Cotton Garden",
         address: process.env.SMTP_EMAIL,
       },
       to: email,

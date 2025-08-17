@@ -2,8 +2,6 @@ import DarkModeSwitcher from "./DarkModeSwitcher";
 import { FaPowerOff } from "react-icons/fa";
 import useAuthStore from "@/store/authStore";
 import Logout from "../Logout";
-import logo from "@/assets/logo.png";
-import logoWhite from "@/assets/logoWhite.png";
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;
@@ -57,12 +55,9 @@ const Header = (props: {
               </span>
             </button>
           </div>
-          <img src={logo.src} alt="logo" className="w-40 dark:hidden" />
-          <img
-            src={logoWhite.src}
-            alt="logo"
-            className="hidden w-40 dark:block"
-          />
+          <h1 className="text-2xl font-bold text-black dark:text-white">
+            Cotton Garden
+          </h1>
         </div>
         <div className="flex items-center gap-3">
           <ul className="flex items-center gap-2 2xsm:gap-4">

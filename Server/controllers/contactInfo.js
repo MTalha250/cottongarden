@@ -1,5 +1,35 @@
 import ContactInfo from "../models/contactInfo.js";
 
+export const createContactInfo = async (req, res) => {
+  const {
+    email,
+    phone,
+    whatsapp,
+    address,
+    facebook,
+    instagram,
+    linkedin,
+    map,
+  } = req.body;
+  try {
+    const contactInfo = await ContactInfo.create({
+      email,
+      phone,
+      whatsapp,
+      address,
+      facebook,
+      instagram,
+      linkedin,
+      map,
+    });
+    res
+      .status(201)
+      .json({ message: "Contact info created successfully", contactInfo });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 export const getContactInfo = async (req, res) => {
   try {
     const contactInfo = await ContactInfo.findOne();
