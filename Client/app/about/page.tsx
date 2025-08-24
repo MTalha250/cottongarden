@@ -8,10 +8,7 @@ const AboutUs = () => {
         title="About Us | Cotton Garden"
         description="At Cotton Garden, we craft breathable cotton essentials for men, women, and kids — made for everyday comfort and timeless style."
       />
-      <div className="relative pt-28 pb-10 px-6 md:px-12 lg:px-24 overflow-hidden">
-        <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-gradient-to-br from-rose-200 to-amber-100 blur-3xl opacity-60" />
-        <div className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-gradient-to-tr from-emerald-200 to-sky-100 blur-3xl opacity-60" />
-
+      <div className="relative pt-28 pb-10 px-6 md:px-12 lg:px-24">
         <section className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <div className="order-2 lg:order-1">
             <p className="tracking-widest text-xs md:text-sm text-gray-500 uppercase">
@@ -56,7 +53,7 @@ const AboutUs = () => {
           </div>
           <div className="order-1 lg:order-2">
             <div className="relative h-[420px] w-full">
-              <div className="absolute inset-0 -translate-x-4 -translate-y-4 rounded-3xl bg-gradient-to-br from-white to-slate-50 border border-gray-100 shadow-sm" />
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white to-slate-50 border border-gray-100 shadow-sm" />
               <img
                 src="/images/a2.png"
                 alt="Cotton Garden 1"

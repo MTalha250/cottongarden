@@ -275,42 +275,6 @@ const page = () => {
                   onValueChange={(e) => setPaymentMethod(e)}
                 >
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="bank" id="bank" />
-                    <Label htmlFor="bank">Bank Transfer</Label>
-                  </div>
-                  {paymentMethod == "bank" && (
-                    <div className="my-1 p-3 rounded-xl border border-gray-200 bg-gray-50">
-                      <p className="text-xs">
-                        Please transfer the total amount to the following bank
-                        account: <br />
-                        Title:{" "}
-                        <span className="font-semibold font-mons">
-                          Hafiz Muhammad Umair
-                        </span>
-                        <br />
-                        Account Number:{" "}
-                        <span className="font-semibold font-mons">
-                          0304 4105720
-                        </span>
-                        <br />
-                        Bank Name:{" "}
-                        <span className="font-semibold font-mons">
-                          Easypaisa
-                        </span>
-                        <br />
-                        <p className="text-xs">
-                          After transferring the amount, please attach the
-                          transaction receipt below to confirm your order.
-                        </p>
-                      </p>
-                      <PhotosUploader
-                        maxPhotos={1}
-                        addedPhotos={images}
-                        onChange={(photos: any) => setImages(photos)}
-                      />
-                    </div>
-                  )}
-                  <div className="flex items-center space-x-2">
                     <RadioGroupItem value="cod" id="cod" />
                     <Label htmlFor="cod">Cash on Delivery (COD)</Label>
                   </div>

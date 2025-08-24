@@ -41,9 +41,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="relative pt-28 pb-20 px-8 md:px-16 lg:px-24 overflow-hidden">
-      <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-gradient-to-br from-rose-200 to-amber-100 blur-3xl opacity-60" />
-      <div className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-gradient-to-tr from-emerald-200 to-sky-100 blur-3xl opacity-60" />
+    <div className="relative pt-28 pb-20 px-8 md:px-16 lg:px-24">
       <SEO
         title="Contact Us | Cotton Garden"
         description="Questions about sizing, shipping, or returns? The Cotton Garden team is here to help."

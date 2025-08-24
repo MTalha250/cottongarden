@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React from "react";
-import img from "@/assets/notfound.png";
 import SEO from "@/components/seo";
 const page = () => {
   return (
@@ -8,10 +7,10 @@ const page = () => {
       <SEO
         title="Page Not Found"
         description="Page Not Found"
-        image={img.src}
+        image="/images/notfound.jpg"
       />
       <div>
-        <img src={img.src} alt="" className="w-[400px]" />
+        <img src="/images/notfound.jpg" alt="" className="w-[400px]" />
         <h1 className="font-mons my-10 text-center text-3xl md:text-4xl tracking-wide">
           Page Not Found
         </h1>
