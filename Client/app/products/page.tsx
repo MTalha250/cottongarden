@@ -146,7 +146,7 @@ const page = () => {
                 <GoFilter />
                 Filters
               </SheetTrigger>
-              <SheetContent className="h-screen flex flex-col">
+              <SheetContent className="h-svh flex flex-col">
                 <h1 className="text-lg md:text-2xl font-mons font-light pb-5 border-b border-gray-200">
                   Filters
                 </h1>
