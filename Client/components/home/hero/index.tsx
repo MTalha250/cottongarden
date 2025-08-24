@@ -3,7 +3,7 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <div className="h-screen w-full bg-secondary px-4 sm:px-6 md:px-16 lg:px-24 flex flex-col md:flex-row relative overflow-hidden">
+    <div className="h-svh w-full bg-secondary px-4 sm:px-6 md:px-16 lg:px-24 flex flex-col md:flex-row relative overflow-hidden">
       <div className="w-full md:w-1/2 h-full flex flex-col justify-end md:justify-center gap-4 items-center md:items-start text-center md:text-left">
         <h1 className="text-2xl sm:text-3xl md:text-5xl font-mons tracking-tight">
           FIND CLOTHES THAT <br /> MATCHES YOUR STYLE
