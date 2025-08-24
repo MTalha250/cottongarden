@@ -14,7 +14,7 @@ const Hero = () => {
           style.
         </p>
         <Link
-          href="/shop"
+          href="/products"
           className="bg-primary text-white px-6 sm:px-8 py-3 rounded-full w-fit"
         >
           Shop Now
