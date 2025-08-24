@@ -72,7 +72,7 @@ const Reviews: React.FC<ReviewsProps> = ({
             onMouseLeave={() => !readOnly && setHover(-1)}
             onClick={() => !readOnly && setReview({ ...review, rating: i })}
             style={{ cursor: readOnly ? "default" : "pointer" }}
-            className="text-primary-dark"
+            className="text-amber-400"
           />
         );
       } else {
@@ -83,7 +83,7 @@ const Reviews: React.FC<ReviewsProps> = ({
             onMouseLeave={() => !readOnly && setHover(-1)}
             onClick={() => !readOnly && setReview({ ...review, rating: i })}
             style={{ cursor: readOnly ? "default" : "pointer" }}
-            className="text-primary-dark"
+            className="text-amber-400"
           />
         );
       }
@@ -93,20 +93,17 @@ const Reviews: React.FC<ReviewsProps> = ({
 
   return (
     <div
-      className={`py-6 px-3 md:p-10 w-full border border-gray-500 min-h-[30vh] ${className}`}
+      className={`py-8 px-4 md:p-10 w-full rounded-2xl border border-gray-200 bg-white min-h-[30vh] ${className}`}
     >
-      <h1
-        className=" 
-      text-xl sm:text-2xl md:text-3xl font-mons tracking-wide text-gray-800 mb-5"
-      >
+      <h1 className="text-2xl md:text-3xl font-mons tracking-tight text-primary mb-5">
         Reviews
       </h1>
       {!user && (
-        <p className="text-sm text-center text-gray-500">
+        <p className="text-sm text-center text-gray-600">
           Please{" "}
           <button
             onClick={() => router.push("/login")}
-            className="text-primary underline"
+            className="text-primary underline underline-offset-4"
           >
             login
           </button>{" "}
@@ -117,7 +114,7 @@ const Reviews: React.FC<ReviewsProps> = ({
         <AccordionItem value="write-review">
           <AccordionTrigger
             disabled={!user}
-            className="border-b border-gray-500 w-full flex flex-col sm:flex-row justify-between p-3"
+            className="border-b border-gray-200 w-full flex flex-col sm:flex-row justify-between p-3"
           >
             <div className="mb-3 sm:mb-0 flex items-center w-full">
               <div className="flex">
@@ -131,14 +128,14 @@ const Reviews: React.FC<ReviewsProps> = ({
               </div>
               <span className="ml-2">({reviews.length})</span>
             </div>
-            <button className="text-sm py-1.5 px-2.5 bg-primary font-mons text-white flex items-center gap-2 shrink-0 mx-2">
+            <button className="text-sm py-1.5 px-3 rounded-full bg-primary font-mons text-white flex items-center gap-2 shrink-0 mx-2">
               <FaEdit /> Write a Review
             </button>
           </AccordionTrigger>
           <AccordionContent>
             <form
               onSubmit={(e) => handleSubmit(e)}
-              className="flex flex-col border-b border-gray-500"
+              className="flex flex-col border-b border-gray-200"
             >
               <h2 className="font-mons text-lg my-3">Your Review</h2>
               <p>
@@ -157,7 +154,7 @@ const Reviews: React.FC<ReviewsProps> = ({
               </label>
               <input
                 type="text"
-                className="w-full border border-black p-2 mb-3 outline-none"
+                className="w-full border border-gray-300 rounded-md p-2 mb-3 outline-none"
                 id="title"
                 name="title"
                 value={review.title || ""}
@@ -167,7 +164,7 @@ const Reviews: React.FC<ReviewsProps> = ({
                 <span className="text-red-500">*</span> Review:
               </label>
               <textarea
-                className="w-full border border-black p-2 mb-3 outline-none"
+                className="w-full border border-gray-300 rounded-md p-2 mb-3 outline-none"
                 id="comment"
                 name="comment"
                 rows={3}
@@ -175,7 +172,7 @@ const Reviews: React.FC<ReviewsProps> = ({
                 onChange={(e) => handleChange(e)}
               />
 
-              <button className="font-mons mb-5 ml-auto py-2 px-4 bg-primary hover:bg-primary-hover text-white  dark:border-white transition duration-200">
+              <button className="font-mons mb-5 ml-auto py-2 px-5 rounded-full bg-primary hover:bg-primary-hover text-white transition duration-200">
                 Post
               </button>
             </form>
@@ -192,14 +189,14 @@ const Reviews: React.FC<ReviewsProps> = ({
             )
             .map((d, i) => (
               <div
-                className="w-full border-b border-black py-3 group flex gap-2"
+                className="w-full border-b border-gray-200 py-3 group flex gap-2"
                 key={i}
               >
                 <span className="shrink-0 text-center leading-10 font-semibold font-mons text-white h-10 w-10 bg-primary rounded-full mt-1">
                   {d.name?.slice(0, 1)}
                 </span>
                 <div className="w-full flex flex-col space-y-0.5">
-                  <h2 className="flex justify-between font-mons text-primary-dark">
+                  <h2 className="flex justify-between font-mons text-primary">
                     <span>{d.name}</span>
                     <span className="text-gray-500 text-xs">
                       {d.createdAt?.slice(0, 10).split("-").reverse().join("-")}

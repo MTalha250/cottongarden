@@ -22,9 +22,9 @@ const config = {
         mons: ["Montserrat", "sans-serif"],
       },
       colors: {
-        primary: "#1F97C6",
-        "primary-hover": "#0270b0",
-        secondary: "#1a1a1a",
+        primary: "#1A1A1A",
+        "primary-hover": "#2A2A2A",
+        secondary: "#F2F0F1",
       },
       keyframes: {
         "accordion-down": {

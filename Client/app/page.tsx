@@ -9,7 +9,7 @@ import SEO from "@/components/seo";
 const page = () => {
   return (
     <div>
-      <SEO title="Home | GYMGear" />
+      <SEO title="Home | Cotton Garden" />
       <Hero />
       <About />
       <Discover />

@@ -58,20 +58,17 @@ const page = () => {
     fetchBlogs();
   }, [page, selected]);
   return (
-    <div className="pt-32 pb-10 px-6 md:px-12 lg:px-24">
+    <div className="pt-28 pb-10 px-6 md:px-12 lg:px-24">
       <SEO
-        title="Blog | GYMGear"
-        description="Welcome to the GYMGear Blog, your go-to for fitness tips, gear reviews, and inspiring customer stories. Find workout routines, product insights, and real-life transformations to fuel your fitness journey!"
+        title="Blog | Cotton Garden"
+        description="Stories and style notes from Cotton Garden. Explore fabric care, seasonal edits, and behind-the-scenes features."
       />
-      <div className="text-center mb-12 flex flex-col items-center">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-mons tracking-wide">
-          GYMGear Blog
+      <div className="text-center mb-10 md:mb-12 flex flex-col items-center">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-mons tracking-tight text-primary">
+          Cotton Garden Journal
         </h1>
-        <p className="text-sm md:text-base mt-4 text-gray-600 max-w-xl">
-          Welcome to the GYMGear Blog, your go-to for fitness tips, gear
-          reviews, and inspiring customer stories. Find workout routines,
-          product insights, and real-life transformations to fuel your fitness
-          journey!
+        <p className="text-sm md:text-base mt-3 text-gray-600 max-w-2xl">
+          Fabric guides, style tips, and updates from our studio.
         </p>
       </div>
       <div className="flex items-center mt-10">
@@ -95,8 +92,8 @@ const page = () => {
           <button
             className={
               !selected
-                ? "px-4 py-2 font-light hover:border-black border border-black whitespace-nowrap text-sm md:text-base"
-                : "px-4 py-2  font-light hover:border-black border border-gray-300 whitespace-nowrap text-sm md:text-base"
+                ? "px-4 py-2 font-light border border-gray-900 rounded-full whitespace-nowrap text-sm md:text-base"
+                : "px-4 py-2 font-light border border-gray-300 rounded-full whitespace-nowrap text-sm md:text-base"
             }
             onClick={() => {
               setSelected("");
@@ -109,8 +106,8 @@ const page = () => {
               key={tag._id}
               className={
                 selected === tag.name
-                  ? "px-4 py-2 font-light hover:border-black border border-black whitespace-nowrap text-sm md:text-base"
-                  : "px-4 py-2 font-light hover:border-black border border-gray-300 whitespace-nowrap text-sm md:text-base"
+                  ? "px-4 py-2 font-light border border-gray-900 rounded-full whitespace-nowrap text-sm md:text-base"
+                  : "px-4 py-2 font-light border border-gray-300 rounded-full whitespace-nowrap text-sm md:text-base"
               }
               onClick={() => {
                 setSelected(tag.name);

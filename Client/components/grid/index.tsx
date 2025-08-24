@@ -15,7 +15,7 @@ const Grid = ({ products, loading }: Props) => {
     </div>
   ) : products.length > 0 ? (
     <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20 my-10 min-h-screen">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 my-10">
         {products.map((product: Product) => (
           <Card key={product._id} product={product} />
         ))}

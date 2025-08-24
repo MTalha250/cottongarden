@@ -3,21 +3,22 @@ import { useCartStore } from "@/store/cartStore";
 import useAuthStore from "@/store/authStore";
 import { IoIosClose } from "react-icons/io";
 import { Cart } from "@/types";
+
 interface Props {
   item: Cart;
 }
 
 const CartItem = ({ item }: Props) => {
   const { user, token } = useAuthStore();
-  const { addItem, removeItem, deleteItem, addQuantity } = useCartStore(
+  const { removeItem, deleteItem, addQuantity } = useCartStore(
     (state) => state
   );
   return (
-    <div className="mt-2 flex items-center border-b border-gray-300 drop-shadow-sm py-2">
+    <div className="mt-2 flex items-center border-b border-gray-200 py-2">
       <img
         src={item.product.images[0]}
         alt={item.product.name}
-        className="w-20 h-20 mr-4 object-cover"
+        className="w-20 h-20 mr-4 object-cover rounded-lg"
       />
       <div className="flex-1">
         <h3 className="font-mons">{item.product.name}</h3>

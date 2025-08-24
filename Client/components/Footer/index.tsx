@@ -1,7 +1,14 @@
 import React, { useState } from "react";
-import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaEnvelope,
+  FaPhone,
+  FaWhatsapp,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
 import Link from "next/link";
-import logo from "@/assets/logoWhite.png";
 import { useContactInfoStore } from "@/store/contactInfoStore";
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -39,16 +46,21 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-secondary text-gray-100 pt-16 pb-10 relative">
+    <footer className="bg-secondary pt-16 pb-10 relative">
       <div className="px-6 md:px-16 lg:px-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         {/* Logo and Brief Description */}
         <div>
           <Link href="/">
-            <img src={logo.src} alt="logo" className="w-60" />
+            <img
+              src="/images/logo.jpeg"
+              alt="logo"
+              className="w-20 rounded-lg hover:scale-105 transition-transform duration-300"
+            />
           </Link>
-          <p className="mt-6 text-gray-400 leading-relaxed text-justify">
-            Elevating your fitness game with high-performance gym wear designed
-            for comfort, durability, and style.
+          <p className="mt-6 font-light leading-relaxed text-justify">
+            Cotton Garden crafts breathable cotton clothing for men, women, and
+            kids and everyday essentials made for comfort, quality and timeless
+            style.
           </p>
           <div className="mt-6 flex space-x-4">
             {/* Social Media Icons */}
@@ -80,55 +92,34 @@ const Footer = () => {
 
         {/* Navigation Links */}
         <div className="md:pl-10">
-          <h3 className="text-xl font-semibold text-white mb-4">Quick Links</h3>
-          <ul className="space-y-3">
+          <h3 className="text-lg font-mons tracking-tight font-medium mb-4">
+            Quick Links
+          </h3>
+          <ul className="space-y-3 font-light">
             <li>
-              <Link
-                href="/"
-                className="text-gray-400 hover:text-white transition duration-300"
-              >
-                Home
-              </Link>
+              <Link href="/">Home</Link>
             </li>
             <li>
-              <Link
-                href="/shop"
-                className="text-gray-400 hover:text-white transition duration-300"
-              >
-                Shop
-              </Link>
+              <Link href="/shop">Shop</Link>
             </li>
             <li>
-              <Link
-                href="/blogs"
-                className="text-gray-400 hover:text-white transition duration-300"
-              >
-                Blogs
-              </Link>
+              <Link href="/blogs">Blogs</Link>
             </li>
             <li>
-              <Link
-                href="/about"
-                className="text-gray-400 hover:text-white transition duration-300"
-              >
-                About Us
-              </Link>
+              <Link href="/about">About Us</Link>
             </li>
             <li>
-              <Link
-                href="/contact"
-                className="text-gray-400 hover:text-white transition duration-300"
-              >
-                Contact
-              </Link>
+              <Link href="/contact">Contact</Link>
             </li>
           </ul>
         </div>
         <div>
-          <h3 className="text-xl font-semibold text-white mb-4">Contact Us</h3>
-          <ul className="space-y-4 text-gray-400">
-            <li>
-              <strong>Phone:</strong>{" "}
+          <h3 className="text-lg font-mons tracking-tight font-medium mb-4">
+            Contact Us
+          </h3>
+          <ul className="space-y-4 font-light">
+            <li className="flex items-center gap-2">
+              <FaPhone className="text-primary" />
               <a
                 href={`tel:${contactInfo?.phone}`}
                 target="_blank"
@@ -137,8 +128,8 @@ const Footer = () => {
                 {contactInfo?.phone}
               </a>
             </li>
-            <li>
-              <strong>Whatsapp:</strong>{" "}
+            <li className="flex items-center gap-2">
+              <FaWhatsapp className="text-primary" />
               <a
                 href={`https://wa.me/${contactInfo?.whatsapp.replace(
                   /\s/g,
@@ -150,8 +141,8 @@ const Footer = () => {
                 {contactInfo?.whatsapp}
               </a>
             </li>
-            <li>
-              <strong>Email:</strong>{" "}
+            <li className="flex items-center gap-2">
+              <FaEnvelope className="text-primary" />
               <a
                 href={`mailto:${contactInfo?.email}`}
                 target="_blank"
@@ -160,8 +151,8 @@ const Footer = () => {
                 {contactInfo?.email}
               </a>
             </li>
-            <li>
-              <strong>Address:</strong>
+            <li className="flex items-center gap-2">
+              <FaMapMarkerAlt className="text-primary" />
               <p className="mt-1">{contactInfo?.address}</p>
             </li>
           </ul>
@@ -169,14 +160,16 @@ const Footer = () => {
 
         {/* Subscribe to Newsletter */}
         <div>
-          <h3 className="text-xl font-semibold text-white mb-4">Subscribe</h3>
-          <p className="text-gray-400 mb-4">
+          <h3 className="text-lg font-mons tracking-tight font-medium mb-4">
+            Subscribe
+          </h3>
+          <p className="font-light mb-4">
             Join our newsletter to get the latest updates and offers.
           </p>
           <form onSubmit={handleSubscribe} className="flex">
             <input
               type="email"
-              className="bg-gray-800 text-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary w-full"
+              className="bg-white text-primary px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary w-full"
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -193,17 +186,19 @@ const Footer = () => {
 
       <div className="mt-12 border-t border-gray-800 pt-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-6 md:px-12 lg:px-24">
-          <p className="text-gray-500">© 2024 GYMGear. All rights reserved.</p>
+          <p className="font-light">
+            © 2025 Cotton Garden. All rights reserved.
+          </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link
               href="/privacy-policy"
-              className="text-gray-400 hover:text-white transition duration-300"
+              className="font-light hover:text-white transition duration-300"
             >
               Privacy Policy
             </Link>
             <Link
               href="/terms-of-service"
-              className="text-gray-400 hover:text-white transition duration-300"
+              className="font-light hover:text-white transition duration-300"
             >
               Terms of Service
             </Link>

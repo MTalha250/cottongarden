@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
-import axios from "axios";
 import Link from "next/link";
 import {
   Form,
@@ -83,115 +82,127 @@ const Register = () => {
   }
 
   return (
-    <div className="flex items-center justify-center flex-col min-h-screen pt-32 py-10 px-6 md:px-12 lg:px-24">
+    <section className="relative min-h-screen px-6 md:px-12 lg:px-24 py-12 flex items-center justify-center">
       <SEO
-        title="Register | GYMGear"
-        description="Create your account with GYMGear to access exclusive deals, track your orders, and more!"
+        title="Register | Cotton Garden"
+        description="Create your Cotton Garden account to track orders, save favorites, and get member perks."
       />
-      <h1 className="text-2xl sm:text-3xl md:text-4xl font-mons tracking-wide">
-        Create your{" "}
-        <span className="text-white bg-primary pr-2 pl-1 italic">Account!</span>{" "}
-      </h1>
-      <div className="mt-2 w-full max-w-[500px]">
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder="" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input placeholder="" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="phone"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Phone</FormLabel>
-                  <FormControl>
-                    <Input placeholder="" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="address"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Address</FormLabel>
-                  <FormControl>
-                    <Input placeholder="" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input type="password" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="confirmPassword"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Confirm Password</FormLabel>
-                  <FormControl>
-                    <Input type="password" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <div className="flex flex-col">
-              <Link
-                href="/login"
-                className="text-sm text-gray-400 hover:text-gray-600"
+      <div className="w-full relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div className="text-center lg:text-left">
+          <p className="tracking-widest text-xs md:text-sm text-gray-500 uppercase">
+            Join Cotton Garden
+          </p>
+          <h1 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-mons tracking-tight text-primary">
+            Create your account
+          </h1>
+          <p className="mt-3 text-gray-600 md:text-lg">
+            Enjoy faster checkout, order tracking, and wishlist sync across
+            devices.
+          </p>
+          <div className="mt-6 text-sm text-gray-600">
+            Already have an account? {""}
+            <Link href="/login" className="underline underline-offset-4">
+              Sign in
+            </Link>
+          </div>
+        </div>
+        <div className="relative">
+          <div className="rounded-2xl border border-gray-200 bg-white p-6 md:p-8 shadow-sm">
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-3"
               >
-                Already have an account? Sign in
-              </Link>
-            </div>
-            <Button
-              type="submit"
-              className="rounded-none font-mons w-full bg-primary hover:bg-primary-hover py-3  text-white dark:border-white transition duration-200"
-            >
-              {isSubmitting ? "Submitting..." : "Register"}
-            </Button>
-          </form>
-        </Form>
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Name</FormLabel>
+                      <FormControl>
+                        <Input placeholder="" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input placeholder="" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="phone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Phone</FormLabel>
+                      <FormControl>
+                        <Input placeholder="" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="address"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Address</FormLabel>
+                      <FormControl>
+                        <Input placeholder="" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Password</FormLabel>
+                      <FormControl>
+                        <Input type="password" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="confirmPassword"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Confirm Password</FormLabel>
+                      <FormControl>
+                        <Input type="password" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button
+                  type="submit"
+                  className="rounded-full font-mons w-full bg-primary hover:bg-primary-hover py-3 text-white transition duration-200"
+                >
+                  {isSubmitting ? "Submitting..." : "Register"}
+                </Button>
+              </form>
+            </Form>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

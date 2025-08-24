@@ -103,36 +103,34 @@ const page = () => {
   };
 
   return (
-    <div className="pt-32 px-6 md:px-12 lg:px-24">
+    <section className="pt-28 pb-16 px-6 md:px-12 lg:px-24">
       <SEO
         title={`${decodeURI(subCategory.toString())}, ${decodeURI(
           category.toString()
-        )} | GYMGear`}
-        description={`Discover our selection of ${decodeURI(
+        )} | Cotton Garden`}
+        description={`Shop Cotton Garden ${decodeURI(
           subCategory.toString()
-        )} in the ${decodeURI(
+        )} in ${decodeURI(
           category.toString()
-        )} category. From high-performance wear to essential accessories, find everything you need to stay at the top of your game.`}
+        )}. Breathable cotton essentials for everyday comfort and timeless style.`}
       />
-      <div className="text-center mb-12 flex flex-col items-center">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-mons tracking-wide">
+      <div className="text-center mb-10 md:mb-12 flex flex-col items-center">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-mons tracking-tight text-primary">
           {decodeURI(subCategory.toString())}, {decodeURI(category.toString())}
         </h1>
-        <p className="text-sm md:text-base mt-4 text-gray-600 max-w-xl">
-          Discover our selection of {decodeURI(subCategory.toString())} in the{" "}
-          {decodeURI(category.toString())} category. From high-performance wear
-          to essential accessories, find everything you need to stay at the top
-          of your game.
+        <p className="text-sm md:text-base mt-3 text-gray-600 max-w-2xl">
+          Find pieces you can live in—made from soft, breathable cotton and
+          designed for effortless style.
         </p>
       </div>
       <div className="w-full my-10">
         <div className="flex justify-center">
-          <div className="flex justify-center w-full max-w-sm">
+          <div className="flex justify-center w-full gap-2 max-w-sm">
             <Select onValueChange={(e) => setSort(e)}>
-              <SelectTrigger className="h-full rounded-none w-1/2 flex items-center justify-center gap-2 border border-black font-light px-4">
+              <SelectTrigger className="h-full rounded-full w-1/2 flex items-center justify-center gap-2 border border-gray-300 font-light px-4">
                 <SelectValue placeholder={"Sort By"} />
               </SelectTrigger>
-              <SelectContent className="rounded-none">
+              <SelectContent className="rounded-xl">
                 <SelectItem className="font-light" value="name">
                   Name
                 </SelectItem>
@@ -154,12 +152,12 @@ const page = () => {
               </SelectContent>
             </Select>
             <Sheet>
-              <SheetTrigger className="w-1/2 flex items-center justify-center gap-2 border border-black font-light py-2 px-4">
+              <SheetTrigger className="w-1/2 flex items-center justify-center gap-2 border border-gray-300 rounded-full font-light py-2 px-4">
                 <GoFilter />
                 Filters
               </SheetTrigger>
               <SheetContent className="h-screen flex flex-col">
-                <h1 className="text-lg md:text-2xl font-mons font-light pb-5 border-b border-black">
+                <h1 className="text-lg md:text-2xl font-mons font-light pb-5 border-b border-gray-200">
                   Filters
                 </h1>
                 <h2 className="font-mons font-light pt-5">Price Range: </h2>
@@ -188,7 +186,7 @@ const page = () => {
                       if (value <= filters.maxPrice && value >= 0)
                         setFilters({ ...filters, minPrice: value });
                     }}
-                    className="border border-black rounded-none w-1/2 p-2 outline-none placeholder:font-light font-light"
+                    className="border border-gray-300 rounded-full w-1/2 p-2 outline-none placeholder:font-light font-light"
                   />
                   <span className="mx-2">-</span>
                   <input
@@ -203,7 +201,7 @@ const page = () => {
                       )
                         setFilters({ ...filters, maxPrice: value });
                     }}
-                    className="border border-black rounded-none w-1/2 p-2 outline-none placeholder:font-light font-light"
+                    className="border border-gray-300 rounded-full w-1/2 p-2 outline-none placeholder:font-light font-light"
                   />
                 </div>
 
@@ -220,9 +218,9 @@ const page = () => {
                             : [...filters.colors, color],
                         })
                       }
-                      className={`font-mons font-light py-1 px-3 hover:border-black border rounded-none ${
+                      className={`font-mons font-light py-1 px-3 hover:border-gray-900 border rounded-full ${
                         filters.colors.includes(color)
-                          ? "border-black"
+                          ? "border-gray-900"
                           : "border-gray-300"
                       }`}
                     >
@@ -248,9 +246,9 @@ const page = () => {
                               : [...filters.sizes, size],
                           })
                         }
-                        className={`font-mons font-light py-1 px-3  hover:border-black border rounded-none ${
+                        className={`font-mons font-light py-1 px-3 hover:border-gray-900 border rounded-full ${
                           filters.sizes.includes(size)
-                            ? "border-black"
+                            ? "border-gray-900"
                             : "border-gray-300"
                         }`}
                       >
@@ -268,7 +266,7 @@ const page = () => {
                         colors: [],
                       });
                     }}
-                    className="font-mons flex justify-center py-2 bg-secondary text-white transition duration-200"
+                    className="font-mons flex justify-center py-2 rounded-full border border-gray-300 text-gray-800 hover:bg-gray-50 transition duration-200"
                   >
                     Clear
                   </button>
@@ -277,7 +275,7 @@ const page = () => {
                       setPage(1);
                       getProducts(true);
                     }}
-                    className="font-mons flex justify-center py-2 bg-primary hover:bg-primary-hover text-white transition duration-200"
+                    className="font-mons flex justify-center py-2 rounded-full bg-primary hover:bg-primary-hover text-white transition duration-200"
                   >
                     Apply
                   </SheetClose>
@@ -351,7 +349,7 @@ const page = () => {
           </PaginationContent>
         </Pagination>
       </div>
-    </div>
+    </section>
   );
 };
 

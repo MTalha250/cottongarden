@@ -4,32 +4,26 @@ import Sidebar from "./Sidebar";
 import { useCartStore } from "@/store/cartStore";
 import { useWishlistStore } from "@/store/wishlistStore";
 import { CiUser } from "react-icons/ci";
-import logo from "@/assets/logo.png";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import Profile from "../profile";
-import toast from "react-hot-toast";
-import Cart from "../cart";
-import Wishlist from "../wishlist";
+import { Search } from "@/components/ui/search";
+import { CiHeart } from "react-icons/ci";
+import { CiShoppingCart } from "react-icons/ci";
 import { VscChevronDown } from "react-icons/vsc";
 import { motion } from "framer-motion";
 import useAuthStore from "@/store/authStore";
 import { logout } from "@/hooks/auth";
 import { Category } from "@/types";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
-  const { initCart } = useCartStore();
+  const { initCart, items } = useCartStore();
   const [activeDropdown, setActiveDropdown] = useState(false);
-  const { initWishlist } = useWishlistStore();
+  const { initWishlist, wishlist } = useWishlistStore();
   const { user, setToken, setUser } = useAuthStore();
   const [categories, setCategories] = useState<Category[]>([]);
   const [sale, setSale] = useState(false);
-
+  const [search, setSearch] = useState("");
+  const router = useRouter();
   const fetchCategories = async () => {
     try {
       const response = await axios.get(
@@ -65,22 +59,16 @@ const Navbar = () => {
   }, [user]);
 
   return (
-    <div className="top-0 z-50 fixed bg-white shadow-lg text-black border-b border-gray-200 px-6 md:px-16 lg:px-24 py-5 w-full flex items-center justify-between">
+    <div className="top-0 z-50 fixed bg-white text-black border-b border-gray-200 px-6 md:px-16 lg:px-24 py-3 w-full flex items-center justify-between">
       <Link href="/">
         <img
-          src={logo.src}
+          src="/images/logo.jpeg"
           alt="logo"
-          className="w-36 hover:scale-105 transition-transform duration-300"
+          className="w-20 rounded-lg hover:scale-105 transition-transform duration-300"
         />
       </Link>
 
-      <div className="hidden lg:flex space-x-6 xl:space-x-12 items-center justify-center text-sm">
-        <Link
-          href="/"
-          className="flex items-center pb-1 border-b border-transparent hover:border-gray-900 transition-all duration-300 font-mons tracking-widest"
-        >
-          HOME
-        </Link>
+      <div className="hidden lg:flex space-x-6 xl:space-x-12 items-center justify-center">
         <div
           onMouseEnter={() => setActiveDropdown(true)}
           onMouseLeave={() => setActiveDropdown(false)}
@@ -88,9 +76,9 @@ const Navbar = () => {
         >
           <Link
             href="/products"
-            className="flex items-center pb-1 border-b border-transparent hover:border-gray-900 transition-all duration-300 font-mons tracking-widest"
+            className="flex items-center border-b border-transparent hover:border-gray-900 transition-all duration-300 font-mons tracking-widest"
           >
-            SHOP
+            Shop
             <VscChevronDown className="ml-1" />
           </Link>
           {activeDropdown && (
@@ -100,7 +88,7 @@ const Navbar = () => {
               exit={{ opacity: 0, y: -10 }}
               className="absolute left-0 w-[550px]"
             >
-              <div className="mt-2 shadow-xl bg-white border border-gray-200 p-5 whitespace-nowrap w-full">
+              <div className="mt-2 shadow-xl bg-white border border-gray-200 rounded-2xl p-5 whitespace-nowrap w-full">
                 <div className="w-full flex flex-wrap gap-10">
                   {categories.map((category, index) => (
                     <div key={index} className="flex flex-col">
@@ -117,7 +105,7 @@ const Navbar = () => {
                               <Link
                                 key={subIndex}
                                 href={`/products/${category.name}/${subCategory}`}
-                                className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+                                className="text-sm text-gray-600 hover:text-gray-800 transition-colors"
                               >
                                 {subCategory}
                               </Link>
@@ -134,61 +122,62 @@ const Navbar = () => {
         {sale && (
           <Link
             href="/sale"
-            className="flex items-center pb-1 border-b border-transparent hover:border-gray-900 transition-all duration-300 font-mons tracking-widest"
+            className="flex items-center border-b border-transparent hover:border-gray-900 transition-all duration-300 font-mons tracking-widest"
           >
-            SALE
+            On Sale
           </Link>
         )}
         <Link
-          href="/search"
-          className="flex items-center pb-1 border-b border-transparent hover:border-gray-900 transition-all duration-300 font-mons tracking-widest"
-        >
-          SEARCH
-        </Link>
-        <Link
           href="/blogs"
-          className="flex items-center pb-1 border-b border-transparent hover:border-gray-900 transition-all duration-300 font-mons tracking-widest"
+          className="flex items-center border-b border-transparent hover:border-gray-900 transition-all duration-300 font-mons tracking-widest"
         >
-          BLOGS
+          Blogs
         </Link>
         <Link
           href="/about"
-          className="flex items-center pb-1 border-b border-transparent hover:border-gray-900 transition-all duration-300 font-mons tracking-widest"
+          className="flex items-center border-b border-transparent hover:border-gray-900 transition-all duration-300 font-mons tracking-widest"
         >
-          ABOUT US
+          About Us
         </Link>
         <Link
           href="/contact"
-          className="flex items-center pb-1 border-b border-transparent hover:border-gray-900 transition-all duration-300 font-mons tracking-widest"
+          className="flex items-center border-b border-transparent hover:border-gray-900 transition-all duration-300 font-mons tracking-widest"
         >
-          CONTACT
+          Contact Us
         </Link>
       </div>
 
       <div className="flex items-center space-x-3 md:space-x-5 font-medium">
-        <Wishlist />
-        <Cart />
+        <div className="hidden md:block">
+          <Search
+            placeholders={[
+              "Search by product name or category",
+              "Find items by color, size, or style",
+              "Look for products by description or features",
+            ]}
+            onChange={(e) => setSearch(e.target.value)}
+            onSubmit={() => router.push(`/search/${search}`)}
+          />
+        </div>
+        <Link href="/wishlist" aria-label="Wishlist" className="relative">
+          <CiHeart className="inline-block text-3xl hover:scale-110 transition duration-200" />
+          {user && (
+            <span className="-top-2 -right-1 h-4 w-4 absolute bg-primary text-white rounded-full p-0.5 text-[10px] flex justify-center items-center">
+              {wishlist.length}
+            </span>
+          )}
+        </Link>
+        <Link href="/cart" aria-label="Cart" className="relative">
+          <CiShoppingCart className="inline-block text-3xl hover:scale-110 transition duration-200" />
+          <span className="-top-2 -right-1 h-4 w-4 absolute bg-primary text-white rounded-full p-0.5 text-[10px] flex justify-center items-center">
+            {items.length}
+          </span>
+        </Link>
 
         {user?.name ? (
-          <DropdownMenu>
-            <DropdownMenuTrigger className="outline-none ring-0">
-              <CiUser className="text-3xl text-gray-800 hover:text-gray-900 hover:scale-110 transition-transform duration-300 cursor-pointer" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="rounded-none shadow-lg py-2 bg-white border border-gray-200">
-              <Profile />
-              <DropdownMenuItem
-                className="flex items-center justify-center text-gray-700 hover:bg-neutral-100 py-2 transition-colors"
-                onClick={() => {
-                  logout();
-                  setUser(null);
-                  setToken(null);
-                  toast.success("Logged out successfully");
-                }}
-              >
-                Logout
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <Link href="/profile" aria-label="Account">
+            <CiUser className="text-3xl text-gray-800 hover:text-gray-900 hover:scale-110 transition-transform duration-300 cursor-pointer" />
+          </Link>
         ) : (
           <Link href="/login">
             <CiUser className="text-3xl text-gray-800 hover:text-gray-900 hover:scale-110 transition-transform duration-300 cursor-pointer" />

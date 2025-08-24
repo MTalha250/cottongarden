@@ -13,23 +13,23 @@ import {
 } from "@/components/ui/accordion";
 import { HiBars3 } from "react-icons/hi2";
 import { CiUser } from "react-icons/ci";
+import { CiHeart, CiShoppingCart } from "react-icons/ci";
 import Link from "next/link";
 import useAuthStore from "@/store/authStore";
 import { logout } from "@/hooks/auth";
 import toast from "react-hot-toast";
-import Cart from "../cart";
-import Wishlist from "../wishlist";
-import Profile from "../profile";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { useCartStore } from "@/store/cartStore";
+import { useWishlistStore } from "@/store/wishlistStore";
+import { Search } from "@/components/ui/search";
+import { useRouter } from "next/navigation";
 import { Category } from "@/types";
 
 const Sidebar = ({ categories }: { categories: Category[] }) => {
   const { user, setToken, setUser } = useAuthStore();
+  const { items } = useCartStore();
+  const { wishlist } = useWishlistStore();
+  const router = useRouter();
+  const [search, setSearch] = React.useState("");
 
   return (
     <Sheet>
@@ -37,36 +37,50 @@ const Sidebar = ({ categories }: { categories: Category[] }) => {
         <HiBars3 className="inline-block text-3xl hover:scale-125 transition duration-200" />
       </SheetTrigger>
       <SheetContent>
-        <div className="flex space-x-3 md:space-x-5 items-center">
-          <Wishlist />
-          <Cart />
-          {user?.name ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger className="outline-none ring-0">
-                <CiUser className="text-3xl text-gray-800 hover:text-gray-900 hover:scale-110 transition-transform duration-300 cursor-pointer" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="rounded-none shadow-lg py-2 bg-white border border-gray-200">
-                <Profile />
-                <DropdownMenuItem
-                  className="flex items-center justify-center text-gray-700 hover:bg-neutral-100 py-2 transition-colors"
-                  onClick={() => {
-                    logout();
-                    setUser(null);
-                    setToken(null);
-                    toast.success("Logged out successfully");
-                  }}
-                >
-                  Logout
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          ) : (
-            <Link href="/login">
+        {/* Quick actions & search */}
+        <div className="flex flex-col gap-4">
+          <div className="flex items-center gap-4">
+            <Link href="/wishlist" className="relative">
               <SheetClose>
-                <CiUser className="text-3xl text-gray-800 hover:text-gray-900 hover:scale-110 transition-transform duration-300 cursor-pointer" />
+                <CiHeart className="inline-block text-3xl hover:scale-110 transition duration-200" />
+                {user && (
+                  <span className="-top-2 -right-1 h-4 w-4 absolute bg-primary text-white rounded-full p-0.5 text-[10px] flex justify-center items-center">
+                    {wishlist.length}
+                  </span>
+                )}
               </SheetClose>
             </Link>
-          )}
+            <Link href="/cart" className="relative">
+              <SheetClose>
+                <CiShoppingCart className="inline-block text-3xl hover:scale-110 transition duration-200" />
+                <span className="-top-2 -right-1 h-4 w-4 absolute bg-primary text-white rounded-full p-0.5 text-[10px] flex justify-center items-center">
+                  {items.length}
+                </span>
+              </SheetClose>
+            </Link>
+            {user?.name ? (
+              <Link href="/profile">
+                <SheetClose>
+                  <CiUser className="text-3xl text-gray-800 hover:text-gray-900 hover:scale-110 transition-transform duration-300 cursor-pointer" />
+                </SheetClose>
+              </Link>
+            ) : (
+              <Link href="/login">
+                <SheetClose>
+                  <CiUser className="text-3xl text-gray-800 hover:text-gray-900 hover:scale-110 transition-transform duration-300 cursor-pointer" />
+                </SheetClose>
+              </Link>
+            )}
+          </div>
+          <Search
+            placeholders={[
+              "Search by product name or category",
+              "Find items by color, size, or style",
+              "Look for products by description or features",
+            ]}
+            onChange={(e) => setSearch(e.target.value)}
+            onSubmit={() => router.push(`/search/${search}`)}
+          />
         </div>
         <div className="mt-20 flex flex-col gap-5 items-center justify-center text-lg">
           <Link
@@ -130,12 +144,7 @@ const Sidebar = ({ categories }: { categories: Category[] }) => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-          <Link
-            href="/search"
-            className="flex items-center pb-1 border-b border-transparent hover:border-gray-900 transition-all duration-300 font-mons tracking-widest"
-          >
-            <SheetClose>SEARCH</SheetClose>
-          </Link>
+          {/* Search link removed; direct search bar provided at top */}
           <Link
             href="/blogs"
             className="flex items-center pb-1 border-b border-transparent hover:border-gray-900 transition-all duration-300 font-mons tracking-widest"

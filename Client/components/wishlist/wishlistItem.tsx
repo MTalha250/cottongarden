@@ -4,22 +4,23 @@ import { IoIosClose } from "react-icons/io";
 import Link from "next/link";
 import { Wishlist } from "@/types";
 import useAuthStore from "@/store/authStore";
+
 interface Props {
   item: Wishlist;
 }
 
 const WishlistItem = ({ item }: Props) => {
-  const { user, token } = useAuthStore();
+  const { token } = useAuthStore();
   const { removeFromWishlist } = useWishlistStore();
   return (
     <Link
       href={`/products/${item.product._id}`}
-      className="mt-2 flex items-center border-b border-gray-300 drop-shadow-sm py-2"
+      className="mt-2 flex items-center border-b border-gray-200 py-2"
     >
       <img
         src={item.product.images[0]}
         alt={item.product.name}
-        className="w-20 h-20 mr-4 object-cover"
+        className="w-20 h-20 mr-4 object-cover rounded-lg"
       />
       <div className="flex-1">
         <h3 className="mb-1 font-mons">{item.product.name}</h3>

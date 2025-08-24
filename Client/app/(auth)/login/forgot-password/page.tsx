@@ -115,105 +115,119 @@ const page = () => {
   }
 
   return (
-    <div className="flex items-center justify-center flex-col min-h-screen px-6 md:px-12 lg:px-24">
+    <section className="relative min-h-screen px-6 md:px-12 lg:px-24 py-12 flex items-center justify-center">
       <SEO
-        title="Reset Password | GYMGear"
-        description="Forgot your password? Reset it here!"
+        title="Reset Password | Cotton Garden"
+        description="Forgot your password? Receive a code and set a new one."
       />
-      <h1 className="text-2xl sm:text-3xl md:text-4xl font-mons tracking-wide mb-3">
-        Reset your{" "}
-        <span className="bg-primary text-white px-2 italic">Password!</span>{" "}
-      </h1>{" "}
-      <p className="text-center text-sm text-gray-400 mb-5">
-        Please enter the code that will be sent to your email and your new
-        password.
-      </p>
-      <div className="mt-2 w-full max-w-[500px]">
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
-            <div className="flex items-end w-full gap-3">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input type="email" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button
-                type="button"
-                onClick={sendEmail}
-                disabled={
-                  timer !== 0 || form.getValues("email") === "" || isSending
-                }
-                className="font-mons flex justify-center p-2  bg-primary hover:bg-primary-hover text-white  dark:border-white transition duration-200"
-              >
-                {isSending
-                  ? "Sending..."
-                  : isExpired
-                  ? "Send Code"
-                  : "00:" + (timer > 9 ? timer : "0" + timer)}
-              </Button>
-            </div>
-            <div className="flex justify-center items-center flex-col">
-              <p className="text-center mb-3">Code</p>
-              <AuthCode
-                containerClassName="flex justify-center gap-2 text-center"
-                inputClassName="border border-neutral-300 text-center font-bold text-xl tracking-[9px] w-9 h-9 outline-none rounded-md"
-                length={6}
-                onChange={(value) => setReceivedCode(value)}
-                autoFocus={false}
-              />
-            </div>
 
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>New Password</FormLabel>
-                  <FormControl>
-                    <Input type="password" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="confirmPassword"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Confirm Password</FormLabel>
-                  <FormControl>
-                    <Input type="password" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Link
-              href="/login"
-              className="text-sm text-gray-400 hover:text-gray-600"
-            >
-              Go back to login?
+      <div className="w-full relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div className="text-center lg:text-left">
+          <p className="tracking-widest text-xs md:text-sm text-gray-500 uppercase">
+            Security first
+          </p>
+          <h1 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-mons tracking-tight text-primary">
+            Reset your password
+          </h1>
+          <p className="mt-3 text-gray-600 md:text-lg">
+            Enter your email to get a 6‑digit code, then set a new password.
+          </p>
+          <div className="mt-6 text-sm text-gray-600">
+            Remembered it? {""}
+            <Link href="/login" className="underline underline-offset-4">
+              Back to login
             </Link>
-            <Button
-              disabled={isSubmitting || timer === 0}
-              type="submit"
-              className="rounded-none font-mons w-full bg-primary hover:bg-primary-hover py-3  dark:border-white transition duration-200"
-            >
-              {isSubmitting ? "Submitting..." : "Change Password"}
-            </Button>
-          </form>
-        </Form>
+          </div>
+        </div>
+
+        <div className="relative">
+          <div className="rounded-2xl border border-gray-200 bg-white p-6 md:p-8 shadow-sm">
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-4"
+              >
+                <div className="flex items-end w-full gap-3">
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                          <Input type="email" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <Button
+                    type="button"
+                    onClick={sendEmail}
+                    disabled={
+                      timer !== 0 || form.getValues("email") === "" || isSending
+                    }
+                    className="font-mons flex justify-center px-4 py-2 rounded-full bg-primary hover:bg-primary-hover text-white transition duration-200"
+                  >
+                    {isSending
+                      ? "Sending..."
+                      : isExpired
+                      ? "Send Code"
+                      : "00:" + (timer > 9 ? timer : "0" + timer)}
+                  </Button>
+                </div>
+
+                <div className="flex justify-center items-center flex-col">
+                  <p className="text-center mb-3">Code</p>
+                  <AuthCode
+                    containerClassName="flex justify-center gap-2 text-center"
+                    inputClassName="border border-neutral-300 text-center font-bold text-xl tracking-[9px] w-9 h-9 outline-none rounded-md"
+                    length={6}
+                    onChange={(value) => setReceivedCode(value)}
+                    autoFocus={false}
+                  />
+                </div>
+
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>New Password</FormLabel>
+                      <FormControl>
+                        <Input type="password" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="confirmPassword"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Confirm Password</FormLabel>
+                      <FormControl>
+                        <Input type="password" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <Button
+                  disabled={isSubmitting || timer === 0}
+                  type="submit"
+                  className="rounded-full font-mons w-full bg-primary hover:bg-primary-hover py-3 text-white transition duration-200"
+                >
+                  {isSubmitting ? "Submitting..." : "Change Password"}
+                </Button>
+              </form>
+            </Form>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

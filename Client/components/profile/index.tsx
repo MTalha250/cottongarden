@@ -1,4 +1,5 @@
 import React, { use, useEffect, useState } from "react";
+// Dialog import kept for legacy but not used in page layout
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "../ui/input";
 import * as z from "zod";
@@ -144,15 +145,12 @@ const Profile = () => {
     }
   };
   return (
-    <Dialog>
-      <DialogTrigger className="px-2 py-1.5 text-sm transition duration-200 hover:bg-neutral-100 w-full">
-        Profile
-      </DialogTrigger>
-      <DialogContent className="scrollbar scrollbar-none overflow-scroll w-full max-w-[1000px] h-full md:max-h-[520px] flex-col md:flex-row flex gap-10">
-        <div className="md:w-1/2 h-full md:overflow-scroll scrollbar-none">
+    <div className="w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="lg:col-span-2 rounded-2xl border border-gray-200 p-5">
           <h1 className="text-2xl font-mons mb-3">Your Profile</h1>
           <Tabs defaultValue="account">
-            <TabsList className="grid w-full grid-cols-2">
+            <TabsList className="grid w-full grid-cols-2 rounded-full">
               <TabsTrigger value="account">Account</TabsTrigger>
               <TabsTrigger value="password">Password</TabsTrigger>
             </TabsList>
@@ -160,7 +158,7 @@ const Profile = () => {
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(onSubmit)}
-                  className="space-y-3"
+                  className="space-y-3 mt-4"
                 >
                   <FormField
                     control={form.control}
@@ -217,14 +215,14 @@ const Profile = () => {
                   {edit ? (
                     <button
                       type="submit"
-                      className="text-base w-full bg-primary hover:bg-primary-hover py-2 text-white dark:border-white transition duration-200"
+                      className="text-base w-full rounded-full bg-primary hover:bg-primary-hover py-2 text-white transition duration-200"
                     >
                       {isSubmitting ? "Saving..." : "Save Changes"}
                     </button>
                   ) : (
                     <div
                       onClick={() => setEdit(true)}
-                      className="text-white w-full bg-primary hover:bg-primary-hover py-2 text-center  dark:border-white transition duration-200"
+                      className="text-white w-full rounded-full bg-primary hover:bg-primary-hover py-2 text-center transition duration-200"
                     >
                       Edit
                     </div>
@@ -235,7 +233,7 @@ const Profile = () => {
             <TabsContent value="password">
               <Form {...formPassword}>
                 <form
-                  className="space-y-3"
+                  className="space-y-3 mt-4"
                   onSubmit={formPassword.handleSubmit(onSubmitPassword)}
                 >
                   <FormField
@@ -279,7 +277,7 @@ const Profile = () => {
                   />
                   <button
                     type="submit"
-                    className="text-base w-full bg-primary hover:bg-primary-hover py-2 text-white dark:border-white transition duration-200"
+                    className="text-base w-full rounded-full bg-primary hover:bg-primary-hover py-2 text-white transition duration-200"
                   >
                     {isSubmittingPassword ? "Saving..." : "Save Changes"}
                   </button>
@@ -288,17 +286,21 @@ const Profile = () => {
             </TabsContent>
           </Tabs>
         </div>
-        <div className="md:w-1/2 h-full">
+        <div className="rounded-2xl border border-gray-200 p-5">
           <h1 className="text-2xl font-mons mb-3">Order History</h1>
-          <div className="space-y-3 text-xs md:overflow-scroll md:h-[90%] scrollbar-none">
+          <div className="space-y-3 text-xs max-h-[520px] overflow-auto scrollbar-none">
             {orders.filter((order) => order.status == PENDING).length > 0 && (
               <h3 className="font-bold">Pending:</h3>
             )}
             {orders
+              .slice()
               .reverse()
               .filter((order) => order.status == PENDING)
               .map((order) => (
-                <div key={order._id} className="border p-3 ">
+                <div
+                  key={order._id}
+                  className="border border-gray-200 rounded-xl p-3"
+                >
                   <div className="flex justify-between">
                     <h2 className="font-bold">Order Date</h2>
                     <h2 className="font-bold">
@@ -346,10 +348,14 @@ const Profile = () => {
             {orders.filter((order) => order.status == PROCESSING).length >
               0 && <h3 className="font-bold">Processing:</h3>}
             {orders
+              .slice()
               .reverse()
               .filter((order) => order.status == PROCESSING)
               .map((order) => (
-                <div key={order._id} className="border p-3 ">
+                <div
+                  key={order._id}
+                  className="border border-gray-200 rounded-xl p-3"
+                >
                   <div className="flex justify-between">
                     <h2 className="font-bold">Order Date</h2>
                     <h2 className="font-bold">
@@ -399,10 +405,14 @@ const Profile = () => {
               <h3 className="font-bold">Completed:</h3>
             )}
             {orders
+              .slice()
               .reverse()
               .filter((order) => order.status == COMPLETED)
               .map((order) => (
-                <div key={order._id} className="border p-3 ">
+                <div
+                  key={order._id}
+                  className="border border-gray-200 rounded-xl p-3"
+                >
                   <div className="flex justify-between">
                     <h2 className="font-bold">Order Date</h2>
                     <h2 className="font-bold">
@@ -452,10 +462,14 @@ const Profile = () => {
               <h3 className="font-bold">Cancelled:</h3>
             )}
             {orders
+              .slice()
               .reverse()
               .filter((order) => order.status == CANCELLED)
               .map((order, index) => (
-                <div key={order._id} className="border p-3 ">
+                <div
+                  key={order._id}
+                  className="border border-gray-200 rounded-xl p-3"
+                >
                   <div className="flex justify-between">
                     <h2 className="font-bold">Order Date</h2>
                     <h2 className="font-bold">
@@ -500,8 +514,8 @@ const Profile = () => {
               ))}
           </div>
         </div>
-      </DialogContent>
-    </Dialog>
+      </div>
+    </div>
   );
 };
 

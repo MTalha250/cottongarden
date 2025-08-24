@@ -52,7 +52,7 @@ const page = () => {
       <ReactLoading type="cylon" color="#000000" />
     </div>
   ) : product ? (
-    <div className="pt-32 pb-10 px-6 md:px-12 lg:px-24">
+    <section className="pt-28 pb-16 px-6 md:px-12 lg:px-24">
       <SEO
         title={product?.name}
         description={product?.description}
@@ -60,14 +60,14 @@ const page = () => {
       />
       <div className="flex flex-col md:flex-row">
         <Slider photos={product?.images} />
-        <div className="mt-10 md:mt-0 w-full md:w-1/2 md:pl-10 bg-white">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-mons mb-3 md:mb-5">
+        <div className="mt-10 md:mt-0 w-full md:w-1/2 md:pl-10">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-mons tracking-tight text-primary mb-3 md:mb-5">
             {product?.name}
           </h1>
-          <p className="md:text-lg lg:text-xl mb-3 md:mb-5 font-mons">
+          <p className="md:text-lg lg:text-xl mb-3 md:mb-5 font-mons text-primary">
             PKR {(product?.finalPrice).toLocaleString()}
             {product?.discount > 0 && (
-              <span className="line-through text-tertiary text-sm ml-2">
+              <span className="line-through text-gray-400 text-sm ml-2">
                 PKR {product?.price.toLocaleString()}
               </span>
             )}
@@ -79,8 +79,8 @@ const page = () => {
               {product?.variants.map((v: any) => (
                 <button
                   key={v._id}
-                  className={`px-3 py-1 font-extralight hover:border-black text-sm border ${
-                    v.color == color ? "border-black" : "border-gray-300"
+                  className={`px-3 py-1 rounded-full font-extralight hover:border-gray-900 text-sm border ${
+                    v.color == color ? "border-gray-900" : "border-gray-300"
                   }`}
                   onClick={() => {
                     setColor(v.color);
@@ -104,8 +104,8 @@ const page = () => {
                 .map((s: string) => (
                   <button
                     key={s}
-                    className={`px-3 py-1 font-extralight hover:border-black text-sm border ${
-                      s == size ? "border-black" : "border-gray-300"
+                    className={`px-3 py-1 rounded-full font-extralight hover:border-gray-900 text-sm border ${
+                      s == size ? "border-gray-900" : "border-gray-300"
                     }`}
                     onClick={() => setSize(s)}
                   >
@@ -117,7 +117,7 @@ const page = () => {
 
           <div className="w-full flex flex-wrap gap-2 mb-5 md:mb-10">
             {product?.inStock && (
-              <div className="flex items-center text-lg text-gray-800 border border-black w-fit">
+              <div className="flex items-center text-lg text-gray-800 border border-gray-300 rounded-full w-fit">
                 <button
                   className="py-1 px-2 font-light"
                   disabled={count <= 1}
@@ -178,12 +178,12 @@ const page = () => {
                   setSize("");
                   setCount(1);
                 }}
-                className="border border-black hover:border-tertiary px-6 py-2 text-black hover:text-tertiary duration-200 transition"
+                className="rounded-full bg-primary hover:bg-primary-hover text-white px-6 py-2 duration-200 transition"
               >
                 Add to Cart
               </button>
             ) : (
-              <p className="group flex items-center justify-center border border-black bg-neutral-300 px-6 py-2 text-black transition-colors">
+              <p className="group flex items-center justify-center border border-gray-300 bg-neutral-200 rounded-full px-6 py-2 text-gray-700 transition-colors">
                 Out of Stock
               </p>
             )}
@@ -207,7 +207,7 @@ const page = () => {
                   router.push("/login");
                 }
               }}
-              className="group p-3 rounded-full border"
+              className="group p-3 rounded-full border border-gray-300 hover:bg-gray-50"
             >
               {inWishlist(product._id) ? (
                 <MdFavorite className="text-tertiary text-xl md:text-2xl group-hover:scale-125 transition duration-200" />
@@ -221,11 +221,11 @@ const page = () => {
               {product?.description}
             </p>
           )}
-          <p className="mt-5 font-light leading-relaxed text-gray-700">
+          <p className="mt-5 font-light leading-relaxed text-gray-600">
             Category: {product?.subCategory}, {product?.category}
           </p>
           {product.brand && (
-            <p className="font-light leading-relaxed text-gray-700">
+            <p className="font-light leading-relaxed text-gray-600">
               Brand: {product.brand}
             </p>
           )}
@@ -260,7 +260,7 @@ const page = () => {
         className="mt-10"
       />
       <RelatedProducts category={category} subCategory={subCategory} id={id} />
-    </div>
+    </section>
   ) : (
     <div className="flex justify-center items-center h-screen">
       <h1 className="text-3xl text-gray-800">Product not found</h1>

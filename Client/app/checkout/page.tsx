@@ -121,26 +121,26 @@ const page = () => {
   }, [items]);
 
   return (
-    <div className="pt-28 pb-10 px-6 md:px-12 lg:px-24 min-h-screen">
+    <div className="pt-28 pb-12 px-6 md:px-12 lg:px-24 min-h-screen">
       <SEO
-        title="Checkout | GYMGear"
-        description="Fill in your details to place your order. We will deliver it to you as soon as possible."
+        title="Checkout | Cotton Garden"
+        description="Fill in your details to place your order. Cotton Garden will ship your items as soon as possible."
       />
-      <div className="text-center mb-5 flex flex-col items-center">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-mons tracking-wide">
+      <div className="text-center mb-6 flex flex-col items-center">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-mons tracking-tight text-primary">
           Checkout
         </h1>
-        <p className="text-sm md:text-base mt-4 text-gray-600 max-w-2xl">
-          Fill in your details to place your order. We will deliver it to you as
-          soon as possible.
+        <p className="text-sm md:text-base mt-3 text-gray-600 max-w-2xl">
+          Fill in your details to place your order. We’ll deliver as soon as
+          possible.
         </p>
       </div>
       <div className="flex flex-col md:flex-row gap-10">
-        <div className="w-full">
+        <div className="w-full rounded-2xl border border-gray-200 bg-white p-4 md:p-6">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
               <h2 className="text-xs font-bold">Personal Info</h2>
-              <div className="border-y py-5">
+              <div className="border-y border-gray-200 py-5">
                 <FormField
                   control={form.control}
                   name="name"
@@ -224,7 +224,7 @@ const page = () => {
                           defaultValue={field.value}
                         >
                           <FormControl>
-                            <SelectTrigger className="rounded-none">
+                            <SelectTrigger className="rounded-full">
                               <SelectValue placeholder="City" />
                             </SelectTrigger>
                           </FormControl>
@@ -269,7 +269,7 @@ const page = () => {
                 </div>
               </div>
               <h2 className="text-xs font-bold">Payment Info:</h2>
-              <div className="border-y py-5">
+              <div className="border-y border-gray-200 py-5">
                 <RadioGroup
                   defaultValue={paymentMethod}
                   onValueChange={(e) => setPaymentMethod(e)}
@@ -279,7 +279,7 @@ const page = () => {
                     <Label htmlFor="bank">Bank Transfer</Label>
                   </div>
                   {paymentMethod == "bank" && (
-                    <div className="my-1 p-2  border border-black">
+                    <div className="my-1 p-3 rounded-xl border border-gray-200 bg-gray-50">
                       <p className="text-xs">
                         Please transfer the total amount to the following bank
                         account: <br />
@@ -319,25 +319,25 @@ const page = () => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="rounded-none font-mons w-full bg-primary hover:bg-primary-hover py-3  text-white transition duration-200"
+                className="rounded-full font-mons w-full bg-primary hover:bg-primary-hover py-3 text-white transition duration-200"
               >
                 {isSubmitting ? "Submitting..." : "Place Order"}
               </Button>
             </form>
           </Form>
         </div>
-        <div className="md:pl-10 w-full md:border-l border-neutral-600">
+        <div className="md:pl-10 w-full md:border-l border-gray-200">
           <h2 className="text-2xl font-mons mb-5">Your Cart</h2>
           {items.map((item) => (
             <div
               key={item.product._id}
-              className="border border-black p-2 my-2 flex justify-between"
+              className="border border-gray-200 rounded-xl p-2 my-2 flex justify-between"
             >
               <div className="w-2/3">
                 <img
                   src={item.product.images[0]}
                   alt=""
-                  className="w-20 h-20 object-cover float-left mr-3.5"
+                  className="w-20 h-20 object-cover float-left mr-3.5 rounded-lg"
                 />
                 <h1 className="font-mons">{item.product.name}</h1>
                 <h1 className="text-xs">Size: {item.size.toUpperCase()}</h1>

@@ -43,37 +43,35 @@ const page = () => {
   }, [page]);
 
   return (
-    <div className="pt-32 pb-10 px-6 md:px-12 lg:px-24">
+    <div className="pt-28 pb-12 px-6 md:px-12 lg:px-24">
       <SEO
-        title="Search | GYMGear"
-        description="Search for Gym Clothing & Accessories Find the perfect gym gear with ease. From performance-driven workout clothing to essential accessories like water bottles and gym bags, search for everything you need to elevate your fitness game!"
+        title="Search | Cotton Garden"
+        description="Search Cotton Garden for breathable cotton essentials across mens, womens, and kids. Find styles by name, color, size, or category."
       />
-      <div className="text-center mb-12 flex flex-col items-center">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-mons tracking-wide">
-          Search
+      <div className="text-center mb-10 md:mb-12 flex flex-col items-center">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-mons tracking-tight text-primary">
+          Search Cotton Garden
         </h1>
-        <p className="text-sm md:text-base mt-4 text-gray-600 max-w-xl">
-          Search for Gym Clothing & Accessories Find the perfect gym gear with
-          ease. From performance-driven workout clothing to essential
-          accessories like water bottles and gym bags, search for everything you
-          need to elevate your fitness game!
+        <p className="text-sm md:text-base mt-3 text-gray-600 max-w-2xl">
+          Look up products by name, category, color, size, or fabric details.
+          Find everyday cotton pieces for the whole family.
         </p>
       </div>
-      <div className="flex flex-col-reverse md:flex-row gap-5 w-full  items-center">
-        <h2 className="font-mons shrink-0 border p-2 text-sm sm:text-base">
+      <div className="flex flex-col-reverse md:flex-row gap-5 w-full items-center">
+        <h2 className="font-mons shrink-0 border border-gray-300 rounded-full px-4 py-2 text-sm sm:text-base">
           {products.length} {products.length > 1 ? "Products" : "Product"}
         </h2>
         <Search
           placeholders={[
             "Search by product name or category",
             "Find items by color, size, or style",
-            "Look for gym gear by description or features",
+            "Search cotton tees, dresses, chinos, and more",
           ]}
           onChange={(e) => setSearch(e.target.value)}
           onSubmit={() => router.push(`/search/${search}`)}
         />
       </div>
-      <h1 className="text-lg sm:text-xl md:text-2xl font-mons tracking-wide mt-10">
+      <h1 className="text-lg sm:text-xl md:text-2xl font-mons tracking-tight text-primary mt-8">
         Showing All Products
       </h1>
       <Grid loading={loading} products={products} />

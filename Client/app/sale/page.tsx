@@ -27,24 +27,22 @@ const page = () => {
   }, []);
 
   return (
-    <div className="pt-32 pb-10 px-6 md:px-12 lg:px-24">
+    <section className="pt-28 pb-12 px-6 md:px-12 lg:px-24">
       <SEO
-        title="Special Deals | GYMGear"
-        description="Discover unbeatable prices on top-quality gym apparel and accessories. From high-performance workout wear to must-have essentials like water bottles and gym bags, find everything you need to boost your fitness journey!"
+        title="Sale | Cotton Garden"
+        description="Save on breathable cotton essentials for men, women, and kids. Limited-time offers on tees, dresses, chinos, and more."
       />
-      <div className="text-center mb-12 flex flex-col items-center">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-mons tracking-wide">
-          Special Deals
+      <div className="text-center mb-10 md:mb-12 flex flex-col items-center">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-mons tracking-tight text-primary">
+          Sale
         </h1>
-        <p className="text-sm md:text-base mt-4 text-gray-600 max-w-xl">
-          Discover unbeatable prices on top-quality gym apparel and accessories.
-          From high-performance workout wear to must-have essentials like water
-          bottles and gym bags, find everything you need to boost your fitness
-          journey!
+        <p className="text-sm md:text-base mt-3 text-gray-600 max-w-2xl">
+          Discover limited-time prices on Cotton Garden favorites. Same quality,
+          better value.
         </p>
       </div>
       <Grid products={products} loading={loading} />
-    </div>
+    </section>
   );
 };
 

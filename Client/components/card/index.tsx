@@ -18,10 +18,7 @@ function Card({ product }: Props) {
   const { user, token } = useAuthStore();
 
   return (
-    <div
-      className="relative group w-full hover:shadow-2xl
-     transition duration-200"
-    >
+    <div className="relative group w-full hover:-translate-y-2 transition duration-200">
       <Link
         href={`/products/${product.category}/${product.subCategory}/${product._id}`}
         className="block text-black"
@@ -29,8 +26,8 @@ function Card({ product }: Props) {
         <div className="relative">
           <div
             id="imgs"
-            className="w-full h-[60vh]
-              transition duration-200
+            className="w-full h-[50vh]
+              transition duration-200 rounded-xl
               bg-center bg-cover bg-no-repeat
           "
             style={{
@@ -48,7 +45,7 @@ function Card({ product }: Props) {
             }}
           ></div>
           {!product.inStock && (
-            <div className="absolute bg-black/40 w-full h-full top-0 left-0 flex items-center justify-center">
+            <div className="absolute bg-black/40 w-full h-full top-0 left-0 flex items-center justify-center rounded-xl">
               <div className="bg-white/90 p-3 shadow-xl">
                 <p className="text-2xl font-bold text-center text-gray-800">
                   Out of Stock
@@ -57,19 +54,19 @@ function Card({ product }: Props) {
             </div>
           )}
           {product.discount > 0 && (
-            <div className="absolute top-5 left-5 bg-primary text-white text-xs font-extralight rounded-full w-12 h-12 flex justify-center items-center">
+            <div className="absolute top-5 left-5 bg-primary text-white text-xs font-extralight rounded-full w-10 h-10 flex justify-center items-center">
               -{product.discount}%
             </div>
           )}
         </div>
-        <div className="p-6">
-          <p className="my-2 text-xl font-light font-mons truncate">
+        <div className="mt-4">
+          <p className="my-1 text-lg font-mons tracking-tight truncate">
             {product.name}
           </p>
-          <p className="my-2 text-sm font-extralight line-clamp-4">
+          <p className="my-1 text-sm font-light line-clamp-4">
             {product.description}
           </p>
-          <p className="my-2 font-mons">
+          <p className="my-1 font-mons text-primary text-lg">
             PKR {product.finalPrice.toLocaleString()}
             {product.discount > 0 && (
               <span className="ml-2 line-through text-gray-500 font-light">
@@ -77,9 +74,6 @@ function Card({ product }: Props) {
               </span>
             )}
           </p>
-          <button className="font-mons font-light border border-black py-2 px-4 mt-10 hover:border-primary hover:text-primary transition- duration-200">
-            More About Product
-          </button>
         </div>
       </Link>
       <button
@@ -102,12 +96,12 @@ function Card({ product }: Props) {
             router.push("/login");
           }
         }}
-        className="z-10 absolute bg-white w-12 h-12 rounded-full top-5 right-5 flex justify-center items-center"
+        className="z-10 absolute bg-white w-10 h-10 rounded-full top-5 right-5 flex justify-center items-center"
       >
         {inWishlist(product._id) ? (
-          <MdFavorite className="text-primary text-2xl hover:scale-125 transition duration-200" />
+          <MdFavorite className="text-primary text-xl hover:scale-125 transition duration-200" />
         ) : (
-          <MdFavoriteBorder className="text-primary text-2xl hover:scale-125 transition duration-200" />
+          <MdFavoriteBorder className="text-primary text-xl hover:scale-125 transition duration-200" />
         )}
       </button>
     </div>
