@@ -36,9 +36,22 @@ const Sidebar = ({ categories }: { categories: Category[] }) => {
       <SheetTrigger className="md:hidden">
         <HiBars3 className="inline-block text-3xl hover:scale-125 transition duration-200" />
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent className="p-0 bg-white/95 backdrop-blur-md rounded-l-2xl shadow-2xl">
+        {/* Header */}
+        <div className="flex items-center justify-between p-5 border-b border-gray-200 bg-gradient-to-r from-white to-gray-50">
+          <Link href="/" className="flex items-center gap-3">
+            <img
+              src="/images/logo.jpeg"
+              alt="Cotton Garden"
+              className="h-8 w-8 rounded-lg object-cover"
+            />
+            <span className="font-mons tracking-tight text-lg">
+              Cotton Garden
+            </span>
+          </Link>
+        </div>
         {/* Quick actions & search */}
-        <div className="flex flex-col gap-4">
+        <div className="p-5 flex flex-col gap-4">
           <div className="flex items-center gap-4">
             <Link href="/wishlist" className="relative">
               <SheetClose>
@@ -82,7 +95,8 @@ const Sidebar = ({ categories }: { categories: Category[] }) => {
             onSubmit={() => router.push(`/search/${search}`)}
           />
         </div>
-        <div className="mt-20 flex flex-col gap-5 items-center justify-center text-lg">
+        {/* Navigation */}
+        <div className="px-6 pb-6 flex flex-col gap-5 items-center justify-center text-lg">
           <Link
             href="/"
             className="flex items-center pb-1 border-b border-transparent hover:border-gray-900 transition-all duration-300 font-mons tracking-widest"
@@ -93,7 +107,7 @@ const Sidebar = ({ categories }: { categories: Category[] }) => {
             <AccordionItem value="item">
               <AccordionTrigger
                 noArrow
-                className="py-0 flex justify-center text-center items-center pb-1 border-b border-transparent hover:border-gray-900 transition-all duration-300 font-mons tracking-widest"
+                className="py-1 flex justify-center text-center items-center pb-1 border-b border-transparent hover:border-gray-900 transition-all duration-300 font-mons tracking-widest"
               >
                 SHOP
               </AccordionTrigger>
@@ -163,6 +177,19 @@ const Sidebar = ({ categories }: { categories: Category[] }) => {
           >
             <SheetClose>CONTACT</SheetClose>
           </Link>
+          {user?.name && (
+            <button
+              onClick={() => {
+                logout();
+                setUser(null);
+                setToken(null);
+                toast.success("Logged out successfully");
+              }}
+              className="mt-2 text-sm rounded-full border border-gray-200 px-4 py-2 hover:bg-neutral-100"
+            >
+              Logout
+            </button>
+          )}
         </div>
       </SheetContent>
     </Sheet>

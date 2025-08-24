@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import Head from "next/head";
 
 interface Props {
@@ -16,6 +17,40 @@ const SEO: React.FC<Props> = ({
   author = "Cotton Garden",
   image = "/images/logo.jpeg",
 }) => {
+  // Ensure title/description apply even when layout is a client component
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (title) document.title = title;
+    const setMeta = (
+      key: string,
+      value: string,
+      attr: "name" | "property" = "name"
+    ) => {
+      if (!value) return;
+      let tag = document.querySelector<HTMLMetaElement>(
+        `meta[${attr}='${key}']`
+      );
+      if (!tag) {
+        tag = document.createElement("meta");
+        tag.setAttribute(attr, key);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute("content", value);
+    };
+    setMeta("description", description);
+    if (keywords) setMeta("keywords", keywords);
+    if (author) setMeta("author", author);
+    setMeta("og:title", title, "property");
+    setMeta("og:description", description, "property");
+    setMeta("og:type", "website", "property");
+    setMeta("og:site_name", "Cotton Garden", "property");
+    if (image) {
+      setMeta("og:image", image, "property");
+      setMeta("twitter:card", "summary_large_image");
+      setMeta("twitter:image", image);
+    }
+  }, [title, description, keywords, author, image]);
+
   return (
     <Head>
       <title>{title}</title>

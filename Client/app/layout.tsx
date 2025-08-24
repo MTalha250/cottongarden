@@ -52,14 +52,6 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <head>
-        <title>Cotton Garden</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-          name="description"
-          content="Cotton Garden crafts breathable cotton clothing for men, women, and kids — tees, shirts, dresses, chinos, loungewear and everyday essentials made for comfort, quality and timeless style."
-        />
-      </head>
       <body>
         <div>
           <Navbar />
