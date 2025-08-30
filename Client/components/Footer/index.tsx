@@ -120,11 +120,7 @@ const Footer = () => {
           <ul className="space-y-4 font-light">
             <li className="flex items-center gap-2">
               <FaPhone className="text-primary" />
-              <a
-                href={`tel:${contactInfo?.phone}`}
-                target="_blank"
-                className="hover:text-white"
-              >
+              <a href={`tel:${contactInfo?.phone}`} target="_blank">
                 {contactInfo?.phone}
               </a>
             </li>
@@ -136,18 +132,13 @@ const Footer = () => {
                   ""
                 )}`}
                 target="_blank"
-                className="hover:text-white"
               >
                 {contactInfo?.whatsapp}
               </a>
             </li>
             <li className="flex items-center gap-2">
               <FaEnvelope className="text-primary" />
-              <a
-                href={`mailto:${contactInfo?.email}`}
-                target="_blank"
-                className="hover:text-white"
-              >
+              <a href={`mailto:${contactInfo?.email}`} target="_blank">
                 {contactInfo?.email}
               </a>
             </li>
@@ -190,16 +181,10 @@ const Footer = () => {
             © 2025 Cotton Garden. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link
-              href="/privacy-policy"
-              className="font-light hover:text-white transition duration-300"
-            >
+            <Link href="/privacy-policy" className="font-light">
               Privacy Policy
             </Link>
-            <Link
-              href="/terms-of-service"
-              className="font-light hover:text-white transition duration-300"
-            >
+            <Link href="/terms-of-service" className="font-light">
               Terms of Service
             </Link>
           </div>

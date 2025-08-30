@@ -29,6 +29,8 @@ app.use(
     origin: [
       "http://localhost:3000",
       "http://localhost:3001",
+      "https://www.cottongardenapparel.com",
+      "https://cottongardenapparel.com",
       "https://cottongarden-admin.vercel.app",
       "https://cottongarden.vercel.app",
     ],
