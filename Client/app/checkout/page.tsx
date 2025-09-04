@@ -1,5 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { globalAnimations, viewportSettings } from "@/lib/animations";
 import {
   Form,
   FormControl,
@@ -121,25 +123,59 @@ const page = () => {
   }, [items]);
 
   return (
-    <div className="pt-28 pb-12 px-6 md:px-12 lg:px-24 min-h-screen">
+    <motion.div
+      className="pt-28 pb-12 px-6 md:px-12 lg:px-24 min-h-screen"
+      {...globalAnimations.fadeIn}
+    >
       <SEO
         title="Checkout | Cotton Garden"
         description="Fill in your details to place your order. Cotton Garden will ship your items as soon as possible."
       />
-      <div className="text-center mb-6 flex flex-col items-center">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-mons tracking-tight text-primary">
+      <motion.div
+        className="text-center mb-6 flex flex-col items-center"
+        variants={globalAnimations.staggerContainer}
+        initial="initial"
+        animate="animate"
+      >
+        <motion.h1
+          className="text-3xl sm:text-4xl md:text-5xl font-mons tracking-tight text-primary"
+          variants={globalAnimations.staggerChild}
+        >
           Checkout
-        </h1>
-        <p className="text-sm md:text-base mt-3 text-gray-600 max-w-2xl">
-          Fill in your details to place your order. We’ll deliver as soon as
+        </motion.h1>
+        <motion.p
+          className="text-sm md:text-base mt-3 text-gray-600 max-w-2xl"
+          variants={globalAnimations.staggerChild}
+        >
+          Fill in your details to place your order. We'll deliver as soon as
           possible.
-        </p>
-      </div>
-      <div className="flex flex-col md:flex-row gap-10">
-        <div className="w-full rounded-2xl border border-gray-200 bg-white p-4 md:p-6">
+        </motion.p>
+      </motion.div>
+      <motion.div
+        className="flex flex-col md:flex-row gap-10"
+        variants={globalAnimations.staggerContainer}
+        initial="initial"
+        animate="animate"
+      >
+        <motion.div
+          className="w-full rounded-2xl border border-gray-200 bg-white p-4 md:p-6"
+          variants={globalAnimations.staggerChild}
+          {...globalAnimations.cardHover}
+        >
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
-              <h2 className="text-xs font-bold">Personal Info</h2>
+            <motion.form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="space-y-3"
+              variants={globalAnimations.staggerContainer}
+              initial="initial"
+              animate="animate"
+            >
+              <motion.h2
+                className="text-xs font-bold"
+                variants={globalAnimations.staggerChild}
+              >
+                Personal Info
+              </motion.h2>
               <div className="border-y border-gray-200 py-5">
                 <FormField
                   control={form.control}
@@ -280,22 +316,41 @@ const page = () => {
                   </div>
                 </RadioGroup>
               </div>
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="rounded-full font-mons w-full bg-primary hover:bg-primary-hover py-3 text-white transition duration-200"
-              >
-                {isSubmitting ? "Submitting..." : "Place Order"}
-              </Button>
-            </form>
+              <motion.div variants={globalAnimations.staggerChild}>
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="rounded-full font-mons w-full bg-primary hover:bg-primary-hover py-3 text-white transition duration-200"
+                >
+                  {isSubmitting ? "Submitting..." : "Place Order"}
+                </Button>
+              </motion.div>
+            </motion.form>
           </Form>
-        </div>
-        <div className="md:pl-10 w-full md:border-l border-gray-200">
-          <h2 className="text-2xl font-mons mb-5">Your Cart</h2>
-          {items.map((item) => (
-            <div
+        </motion.div>
+        <motion.div
+          className="md:pl-10 w-full md:border-l border-gray-200"
+          variants={globalAnimations.staggerChild}
+        >
+          <motion.h2
+            className="text-2xl font-mons mb-5"
+            {...globalAnimations.slideUp}
+          >
+            Your Cart
+          </motion.h2>
+          {items.map((item, index) => (
+            <motion.div
               key={item.product._id}
               className="border border-gray-200 rounded-xl p-2 my-2 flex justify-between"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              whileHover={{
+                y: -8,
+                scale: 1.02,
+                boxShadow:
+                  "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+              }}
             >
               <div className="w-2/3">
                 <img
@@ -313,9 +368,13 @@ const page = () => {
               <span className="font-mons">
                 PKR {item.product.finalPrice.toLocaleString()}
               </span>
-            </div>
+            </motion.div>
           ))}
-          <div className="mt-10">
+          <motion.div
+            className="mt-10"
+            {...globalAnimations.slideUp}
+            transition={{ delay: 0.3 }}
+          >
             <div className="flex justify-between">
               <p>Subtotal</p>
               <p>PKR {getTotalPrice().toLocaleString()}</p>
@@ -328,10 +387,10 @@ const page = () => {
               <p>Total</p>
               <p>PKR {(getTotalPrice() + delivery).toLocaleString()} </p>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 };
 

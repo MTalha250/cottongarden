@@ -1,5 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { globalAnimations, viewportSettings } from "@/lib/animations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -115,37 +117,60 @@ const page = () => {
   }
 
   return (
-    <section className="relative min-h-screen px-6 md:px-12 lg:px-24 py-12 flex items-center justify-center">
+    <motion.section
+      className="relative min-h-screen px-6 md:px-12 lg:px-24 py-12 flex items-center justify-center"
+      {...globalAnimations.fadeIn}
+    >
       <SEO
         title="Reset Password | Cotton Garden"
         description="Forgot your password? Receive a code and set a new one."
       />
 
-      <div className="w-full relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-        <div className="text-center lg:text-left">
-          <p className="tracking-widest text-xs md:text-sm text-gray-500 uppercase">
+      <motion.div
+        className="w-full relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center"
+        variants={globalAnimations.staggerContainer}
+        initial="initial"
+        animate="animate"
+      >
+        <motion.div
+          className="text-center lg:text-left"
+          variants={globalAnimations.staggerChild}
+        >
+          <motion.p
+            className="tracking-widest text-xs md:text-sm text-gray-500 uppercase"
+            variants={globalAnimations.staggerChild}
+          >
             Security first
-          </p>
-          <h1 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-mons tracking-tight text-primary">
+          </motion.p>
+          <motion.h1
+            className="mt-2 text-3xl sm:text-4xl md:text-5xl font-mons tracking-tight text-primary"
+            variants={globalAnimations.staggerChild}
+          >
             Reset your password
-          </h1>
-          <p className="mt-3 text-gray-600 md:text-lg">
+          </motion.h1>
+          <motion.p
+            className="mt-3 text-gray-600 md:text-lg"
+            variants={globalAnimations.staggerChild}
+          >
             Enter your email to get a 6‑digit code, then set a new password.
-          </p>
-          <div className="mt-6 text-sm text-gray-600">
-            Remembered it? {""}
-            <Link href="/login" className="underline underline-offset-4">
-              Back to login
-            </Link>
-          </div>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div className="relative">
-          <div className="rounded-2xl border border-gray-200 bg-white p-6 md:p-8 shadow-sm">
+        <motion.div
+          className="relative"
+          variants={globalAnimations.staggerChild}
+        >
+          <motion.div
+            className="rounded-2xl border border-gray-200 bg-white p-6 md:p-8 shadow-sm"
+            {...globalAnimations.cardHover}
+          >
             <Form {...form}>
-              <form
+              <motion.form
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="space-y-4"
+                variants={globalAnimations.staggerContainer}
+                initial="initial"
+                animate="animate"
               >
                 <div className="flex items-end w-full gap-3">
                   <FormField
@@ -215,19 +240,42 @@ const page = () => {
                   )}
                 />
 
-                <Button
-                  disabled={isSubmitting || timer === 0}
-                  type="submit"
-                  className="rounded-full font-mons w-full bg-primary hover:bg-primary-hover py-3 text-white transition duration-200"
-                >
-                  {isSubmitting ? "Submitting..." : "Change Password"}
-                </Button>
-              </form>
+                <motion.div variants={globalAnimations.staggerChild}>
+                  <Button
+                    disabled={isSubmitting || timer === 0}
+                    type="submit"
+                    className="rounded-full font-mons w-full bg-primary hover:bg-primary-hover py-3 text-white transition duration-200"
+                  >
+                    {isSubmitting ? "Submitting..." : "Change Password"}
+                  </Button>
+                </motion.div>
+              </motion.form>
             </Form>
-          </div>
-        </div>
-      </div>
-    </section>
+
+            {/* Login section moved below reset password button */}
+            <motion.div
+              className="mt-6 text-center text-sm text-gray-600"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.4 }}
+            >
+              Remembered it?{" "}
+              <motion.div
+                className="inline-block"
+                {...globalAnimations.hoverScale}
+              >
+                <Link
+                  href="/login"
+                  className="underline underline-offset-4 text-primary hover:text-primary-hover transition-colors"
+                >
+                  Back to login
+                </Link>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </motion.section>
   );
 };
 

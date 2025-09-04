@@ -1,5 +1,7 @@
 "use client";
 import React from "react";
+import { motion } from "framer-motion";
+import { globalAnimations, viewportSettings } from "@/lib/animations";
 import { FiMail, FiPhone, FiMapPin, FiMessageCircle } from "react-icons/fi";
 import { useContactInfoStore } from "@/store/contactInfoStore";
 import toast from "react-hot-toast";
@@ -41,152 +43,266 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="relative pt-28 pb-20 px-8 md:px-16 lg:px-24">
+    <motion.div
+      className="relative pt-28 pb-20 px-8 md:px-16 lg:px-24"
+      {...globalAnimations.fadeIn}
+    >
       <SEO
         title="Contact Us | Cotton Garden"
         description="Questions about sizing, shipping, or returns? The Cotton Garden team is here to help."
       />
-      <div className="text-center mb-12 flex flex-col items-center">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-mons tracking-tight text-primary">
+      <motion.div
+        className="text-center mb-12 flex flex-col items-center"
+        variants={globalAnimations.staggerContainer}
+        initial="initial"
+        animate="animate"
+      >
+        <motion.h1
+          className="text-3xl sm:text-4xl md:text-5xl font-mons tracking-tight text-primary"
+          variants={globalAnimations.staggerChild}
+        >
           Contact Us
-        </h1>
-        <p className="text-sm md:text-base mt-3 text-gray-600 max-w-2xl">
-          We’re here to help with orders, fit, and product questions. Reach out
-          and we’ll get back within 1 business day.
-        </p>
-      </div>
+        </motion.h1>
+        <motion.p
+          className="text-sm md:text-base mt-3 text-gray-600 max-w-2xl"
+          variants={globalAnimations.staggerChild}
+        >
+          We're here to help with orders, fit, and product questions. Reach out
+          and we'll get back within 1 business day.
+        </motion.p>
+      </motion.div>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <motion.div
+        className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8"
+        variants={globalAnimations.staggerContainer}
+        initial="initial"
+        whileInView="animate"
+        viewport={viewportSettings}
+      >
         {/* Form */}
-        <div className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-8">
-          <h2 className="text-2xl md:text-3xl text-primary mb-2">
+        <motion.div
+          className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-8"
+          variants={globalAnimations.staggerChild}
+          {...globalAnimations.cardHover}
+        >
+          <motion.h2
+            className="text-2xl md:text-3xl text-primary mb-2"
+            variants={globalAnimations.staggerChild}
+          >
             Send us a message
-          </h2>
-          <p className="text-gray-600 mb-6">
+          </motion.h2>
+          <motion.p
+            className="text-gray-600 mb-6"
+            variants={globalAnimations.staggerChild}
+          >
             We usually reply within a business day.
-          </p>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
+          </motion.p>
+          <motion.form
+            onSubmit={handleSubmit}
+            className="space-y-6"
+            variants={globalAnimations.staggerContainer}
+          >
+            <motion.div variants={globalAnimations.staggerChild}>
               <label className="block text-gray-700 text-base md:text-lg">
                 Name
               </label>
-              <input
+              <motion.input
                 type="text"
                 className="w-full mt-2 p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                 placeholder="Your Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                whileFocus={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
               />
-            </div>
-            <div>
+            </motion.div>
+            <motion.div variants={globalAnimations.staggerChild}>
               <label className="block text-gray-700 text-base md:text-lg">
                 Email
               </label>
-              <input
+              <motion.input
                 type="email"
                 className="w-full mt-2 p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                 placeholder="Your Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                whileFocus={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
               />
-            </div>
-            <div>
+            </motion.div>
+            <motion.div variants={globalAnimations.staggerChild}>
               <label className="block text-gray-700 text-base md:text-lg">
                 Message
               </label>
-              <textarea
+              <motion.textarea
                 className="w-full mt-2 p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                 placeholder="Your Message"
                 rows={6}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-              ></textarea>
-            </div>
-            <div className="flex items-center justify-end">
-              <button
+                whileFocus={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              />
+            </motion.div>
+            <motion.div
+              className="flex items-center justify-end"
+              variants={globalAnimations.staggerChild}
+            >
+              <motion.button
                 type="submit"
                 disabled={loading}
                 className="bg-primary hover:bg-primary-hover rounded-full text-white py-3 px-8 transition duration-300"
+                {...globalAnimations.buttonHover}
               >
                 {loading ? "Sending..." : "Send Message"}
-              </button>
-            </div>
-          </form>
-        </div>
+              </motion.button>
+            </motion.div>
+          </motion.form>
+        </motion.div>
 
         {/* Info stack */}
-        <div className="space-y-6">
-          <div className="rounded-2xl border border-gray-200 bg-white p-6">
-            <h3 className="text-lg font-mons text-primary mb-3">
+        <motion.div
+          className="space-y-6"
+          variants={globalAnimations.staggerChild}
+        >
+          <motion.div
+            className="rounded-2xl border border-gray-200 bg-white p-6"
+            {...globalAnimations.cardHover}
+          >
+            <motion.h3
+              className="text-lg font-mons text-primary mb-3"
+              {...globalAnimations.slideUp}
+            >
               Get in touch
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <a
+            </motion.h3>
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+              variants={globalAnimations.staggerContainer}
+              initial="initial"
+              whileInView="animate"
+              viewport={viewportSettings}
+            >
+              <motion.a
                 href={`mailto:${contactInfo?.email || ""}`}
                 className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center"
+                variants={globalAnimations.staggerChild}
+                {...globalAnimations.hoverScale}
               >
-                <FiMail className="text-primary text-3xl mb-2 mx-auto" />
+                <motion.div {...globalAnimations.iconHover}>
+                  <FiMail className="text-primary text-3xl mb-2 mx-auto" />
+                </motion.div>
                 <div className="text-gray-800">Email Us</div>
                 <div className="text-xs sm:text-sm text-gray-600">
                   {contactInfo?.email}
                 </div>
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href={`tel:${contactInfo?.phone || ""}`}
                 className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center"
+                variants={globalAnimations.staggerChild}
+                {...globalAnimations.hoverScale}
               >
-                <FiPhone className="text-primary text-3xl mb-2 mx-auto" />
+                <motion.div {...globalAnimations.iconHover}>
+                  <FiPhone className="text-primary text-3xl mb-2 mx-auto" />
+                </motion.div>
                 <div className="text-gray-800">Call Us</div>
                 <div className="text-sm text-gray-600">
                   {contactInfo?.phone}
                 </div>
-              </a>
+              </motion.a>
               {contactInfo?.whatsapp && (
-                <a
+                <motion.a
                   href={`https://wa.me/${(contactInfo?.whatsapp || "").replace(
                     /\s/g,
                     ""
                   )}`}
                   target="_blank"
                   className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center"
+                  variants={globalAnimations.staggerChild}
+                  {...globalAnimations.hoverScale}
                 >
-                  <FiMessageCircle className="text-primary text-3xl mb-2 mx-auto" />
+                  <motion.div {...globalAnimations.iconHover}>
+                    <FiMessageCircle className="text-primary text-3xl mb-2 mx-auto" />
+                  </motion.div>
                   <div className="text-gray-800">WhatsApp</div>
                   <div className="text-sm text-gray-600">
                     {contactInfo?.whatsapp}
                   </div>
-                </a>
+                </motion.a>
               )}
-              <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center">
-                <FiMapPin className="text-primary text-3xl mb-2 mx-auto" />
+              <motion.div
+                className="bg-gray-50 border border-gray-200 rounded-xl p-6 text-center"
+                variants={globalAnimations.staggerChild}
+                {...globalAnimations.hoverScale}
+              >
+                <motion.div {...globalAnimations.iconHover}>
+                  <FiMapPin className="text-primary text-3xl mb-2 mx-auto" />
+                </motion.div>
                 <div className="text-gray-800">Address</div>
                 <div className="text-sm text-gray-600">
                   {contactInfo?.address}
                 </div>
-              </div>
-            </div>
-          </div>
-          <div className="rounded-2xl border border-gray-200 bg-white p-6">
-            <h3 className="text-lg font-mons text-primary mb-2">
+              </motion.div>
+            </motion.div>
+          </motion.div>
+          <motion.div
+            className="rounded-2xl border border-gray-200 bg-white p-6"
+            {...globalAnimations.cardHover}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewportSettings}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.h3
+              className="text-lg font-mons text-primary mb-2"
+              {...globalAnimations.slideUp}
+            >
               Support hours
-            </h3>
-            <ul className="text-sm text-gray-600 space-y-1">
-              <li>Mon – Sat: 9:00 AM – 6:00 PM</li>
-              <li>Sunday: Closed</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+            </motion.h3>
+            <motion.ul
+              className="text-sm text-gray-600 space-y-1"
+              variants={globalAnimations.staggerContainer}
+              initial="initial"
+              whileInView="animate"
+              viewport={viewportSettings}
+            >
+              <motion.li variants={globalAnimations.staggerChild}>
+                Mon – Sat: 9:00 AM – 6:00 PM
+              </motion.li>
+              <motion.li variants={globalAnimations.staggerChild}>
+                Sunday: Closed
+              </motion.li>
+            </motion.ul>
+          </motion.div>
+        </motion.div>
+      </motion.div>
 
-      <div className="mt-20 text-center">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-mons tracking-tight text-primary mb-6">
+      <motion.div
+        className="mt-20 text-center"
+        variants={globalAnimations.staggerContainer}
+        initial="initial"
+        whileInView="animate"
+        viewport={viewportSettings}
+      >
+        <motion.h2
+          className="text-2xl sm:text-3xl md:text-4xl font-mons tracking-tight text-primary mb-6"
+          variants={globalAnimations.staggerChild}
+        >
           Our Location
-        </h2>
-        <p className="text-gray-600 mb-8">
+        </motion.h2>
+        <motion.p
+          className="text-gray-600 mb-8"
+          variants={globalAnimations.staggerChild}
+        >
           Visit us at our boutique to explore our latest collections in person
           and experience our fashion expertise firsthand.
-        </p>
-        <div className="relative w-full h-96">
+        </motion.p>
+        <motion.div
+          className="relative w-full h-96"
+          variants={globalAnimations.staggerChild}
+          whileHover={{ scale: 1.02 }}
+          transition={{ type: "spring", stiffness: 300 }}
+        >
           <iframe
             src={contactInfo?.map}
             width="100%"
@@ -194,9 +310,9 @@ const ContactUs = () => {
             style={{ border: 0 }}
             loading="lazy"
           ></iframe>
-        </div>
-      </div>
-    </div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 };
 

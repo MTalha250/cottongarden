@@ -12,7 +12,7 @@ import { FreeMode, Thumbs, Pagination } from "swiper/modules";
 const Slider = ({ photos }: { photos: string[] }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
-    <div className="w-full md:w-1/2 rounded-2xl border border-gray-200 bg-white p-3 md:p-4">
+    <div className="w-full rounded-2xl border border-gray-200 bg-white p-3 md:p-4">
       <Swiper
         spaceBetween={10}
         thumbs={{ swiper: thumbsSwiper }}

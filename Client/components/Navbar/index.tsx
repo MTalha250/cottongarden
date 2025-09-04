@@ -8,12 +8,13 @@ import { Search } from "@/components/ui/search";
 import { CiHeart } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
 import { VscChevronDown } from "react-icons/vsc";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import useAuthStore from "@/store/authStore";
 import { logout } from "@/hooks/auth";
 import { Category } from "@/types";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { globalAnimations, viewportSettings } from "@/lib/animations";
 
 const Navbar = () => {
   const { initCart, items } = useCartStore();
@@ -59,12 +60,16 @@ const Navbar = () => {
   }, [user]);
 
   return (
-    <div className="top-0 z-50 fixed bg-white text-black border-b border-gray-200 px-6 md:px-16 lg:px-24 py-3 w-full flex items-center justify-between">
+    <motion.div
+      className="top-0 z-50 fixed bg-white text-black border-b border-gray-200 px-6 md:px-16 lg:px-24 py-3 w-full flex items-center justify-between"
+      {...globalAnimations.navbarSlideDown}
+    >
       <Link href="/">
-        <img
+        <motion.img
           src="/images/logo.jpeg"
           alt="logo"
-          className="w-20 rounded-lg hover:scale-105 transition-transform duration-300"
+          className="w-20 rounded-lg"
+          {...globalAnimations.hoverScale}
         />
       </Link>
 
@@ -81,43 +86,46 @@ const Navbar = () => {
             Shop
             <VscChevronDown className="ml-1" />
           </Link>
-          {activeDropdown && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="absolute left-0 w-[550px]"
-            >
-              <div className="mt-2 shadow-xl bg-white border border-gray-200 rounded-2xl p-5 whitespace-nowrap w-full">
-                <div className="w-full flex flex-wrap gap-10">
-                  {categories.map((category, index) => (
-                    <div key={index} className="flex flex-col">
-                      <Link
-                        href={`/products/${category.name}`}
-                        className="border-b border-transparent hover:border-black transition duration-300 uppercase"
-                      >
-                        {category.name}
-                      </Link>
-                      <div className="mt-3 flex flex-col space-y-2">
-                        {category.subCategories.length > 0 &&
-                          category.subCategories.map(
-                            (subCategory, subIndex) => (
-                              <Link
-                                key={subIndex}
-                                href={`/products/${category.name}/${subCategory}`}
-                                className="text-sm text-gray-600 hover:text-gray-800 transition-colors"
-                              >
-                                {subCategory}
-                              </Link>
-                            )
-                          )}
+          <AnimatePresence>
+            {activeDropdown && (
+              <motion.div
+                initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="absolute left-0 w-[550px]"
+              >
+                <div className="mt-2 shadow-xl bg-white border border-gray-200 rounded-2xl p-5 whitespace-nowrap w-full">
+                  <div className="w-full flex flex-wrap gap-10">
+                    {categories.map((category, index) => (
+                      <div key={index} className="flex flex-col">
+                        <Link
+                          href={`/products/${category.name}`}
+                          className="border-b border-transparent hover:border-black transition duration-300 uppercase"
+                        >
+                          {category.name}
+                        </Link>
+                        <div className="mt-3 flex flex-col space-y-2">
+                          {category.subCategories.length > 0 &&
+                            category.subCategories.map(
+                              (subCategory, subIndex) => (
+                                <Link
+                                  key={subIndex}
+                                  href={`/products/${category.name}/${subCategory}`}
+                                  className="text-sm text-gray-600 hover:text-gray-800 transition-colors"
+                                >
+                                  {subCategory}
+                                </Link>
+                              )
+                            )}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          )}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
         {sale && (
           <Link
@@ -160,32 +168,46 @@ const Navbar = () => {
           />
         </div>
         <Link href="/wishlist" aria-label="Wishlist" className="relative">
-          <CiHeart className="inline-block text-3xl hover:scale-110 transition duration-200" />
+          <motion.div {...globalAnimations.iconHover}>
+            <CiHeart className="inline-block text-3xl" />
+          </motion.div>
           {user && (
-            <span className="-top-2 -right-1 h-4 w-4 absolute bg-primary text-white rounded-full p-0.5 text-[10px] flex justify-center items-center">
+            <motion.span
+              className="-top-2 -right-1 h-4 w-4 absolute bg-primary text-white rounded-full p-0.5 text-[10px] flex justify-center items-center"
+              {...globalAnimations.scaleIn}
+            >
               {wishlist.length}
-            </span>
+            </motion.span>
           )}
         </Link>
         <Link href="/cart" aria-label="Cart" className="relative">
-          <CiShoppingCart className="inline-block text-3xl hover:scale-110 transition duration-200" />
-          <span className="-top-2 -right-1 h-4 w-4 absolute bg-primary text-white rounded-full p-0.5 text-[10px] flex justify-center items-center">
+          <motion.div {...globalAnimations.iconHover}>
+            <CiShoppingCart className="inline-block text-3xl" />
+          </motion.div>
+          <motion.span
+            className="-top-2 -right-1 h-4 w-4 absolute bg-primary text-white rounded-full p-0.5 text-[10px] flex justify-center items-center"
+            {...globalAnimations.scaleIn}
+          >
             {items.length}
-          </span>
+          </motion.span>
         </Link>
 
         {user?.name ? (
           <Link href="/profile" aria-label="Account">
-            <CiUser className="text-3xl text-gray-800 hover:text-gray-900 hover:scale-110 transition-transform duration-300 cursor-pointer" />
+            <motion.div {...globalAnimations.iconHover}>
+              <CiUser className="text-3xl text-gray-800 hover:text-gray-900 cursor-pointer" />
+            </motion.div>
           </Link>
         ) : (
           <Link href="/login">
-            <CiUser className="text-3xl text-gray-800 hover:text-gray-900 hover:scale-110 transition-transform duration-300 cursor-pointer" />
+            <motion.div {...globalAnimations.iconHover}>
+              <CiUser className="text-3xl text-gray-800 hover:text-gray-900 cursor-pointer" />
+            </motion.div>
           </Link>
         )}
         <Sidebar categories={categories} />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

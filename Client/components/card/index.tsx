@@ -7,6 +7,8 @@ import { MdFavorite } from "react-icons/md";
 import { useWishlistStore } from "@/store/wishlistStore";
 import useAuthStore from "@/store/authStore";
 import { Product } from "@/types";
+import { motion } from "framer-motion";
+import { globalAnimations } from "@/lib/animations";
 
 interface Props {
   product: Product;
@@ -18,45 +20,62 @@ function Card({ product }: Props) {
   const { user, token } = useAuthStore();
 
   return (
-    <div className="relative group w-full hover:-translate-y-2 transition duration-200">
+    <motion.div
+      className="relative group w-full"
+      whileHover={{ y: -8, scale: 1.02 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+    >
       <Link
         href={`/products/${product.category}/${product.subCategory}/${product._id}`}
         className="block text-black"
       >
-        <div className="relative">
-          <div
+        <div className="relative overflow-hidden rounded-xl">
+          <motion.div
             id="imgs"
-            className="w-full h-[50vh]
-              transition duration-200 rounded-xl
-              bg-center bg-cover bg-no-repeat
-          "
+            className="w-full h-[50vh] bg-center bg-cover bg-no-repeat rounded-xl"
             style={{
               backgroundImage: `url(${product.images[0]})`,
             }}
             onMouseEnter={(e) => {
-              (
-                e.currentTarget as HTMLElement
-              ).style.backgroundImage = `url(${product.images[1]})`;
+              if (product.images[1]) {
+                (
+                  e.currentTarget as HTMLElement
+                ).style.backgroundImage = `url(${product.images[1]})`;
+              }
             }}
             onMouseLeave={(e) => {
               (
                 e.currentTarget as HTMLElement
               ).style.backgroundImage = `url(${product.images[0]})`;
             }}
-          ></div>
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          />
           {!product.inStock && (
-            <div className="absolute bg-black/40 w-full h-full top-0 left-0 flex items-center justify-center rounded-xl">
-              <div className="bg-white/90 p-3 shadow-xl">
+            <motion.div
+              className="absolute bg-black/40 w-full h-full top-0 left-0 flex items-center justify-center rounded-xl"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <motion.div
+                className="bg-white/90 p-3 shadow-xl rounded-lg"
+                {...globalAnimations.scaleIn}
+              >
                 <p className="text-2xl font-bold text-center text-gray-800">
                   Out of Stock
                 </p>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           )}
           {product.discount > 0 && (
-            <div className="absolute top-5 left-5 bg-primary text-white text-xs font-extralight rounded-full w-10 h-10 flex justify-center items-center">
+            <motion.div
+              className="absolute top-5 left-5 bg-primary text-white text-xs font-extralight rounded-full w-10 h-10 flex justify-center items-center"
+              {...globalAnimations.scaleIn}
+              whileHover={{ scale: 1.1, rotate: 5 }}
+            >
               -{product.discount}%
-            </div>
+            </motion.div>
           )}
         </div>
         <div className="mt-4">
@@ -76,7 +95,7 @@ function Card({ product }: Props) {
           </p>
         </div>
       </Link>
-      <button
+      <motion.button
         onClick={() => {
           if (user) {
             if (inWishlist(product._id)) {
@@ -96,15 +115,25 @@ function Card({ product }: Props) {
             router.push("/login");
           }
         }}
-        className="z-10 absolute bg-white w-10 h-10 rounded-full top-5 right-5 flex justify-center items-center"
+        className="z-10 absolute bg-white w-10 h-10 rounded-full top-5 right-5 flex justify-center items-center shadow-md"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        transition={{ type: "spring", stiffness: 400, damping: 17 }}
       >
-        {inWishlist(product._id) ? (
-          <MdFavorite className="text-primary text-xl hover:scale-125 transition duration-200" />
-        ) : (
-          <MdFavoriteBorder className="text-primary text-xl hover:scale-125 transition duration-200" />
-        )}
-      </button>
-    </div>
+        <motion.div
+          key={inWishlist(product._id) ? "filled" : "outline"}
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: "spring", stiffness: 500, damping: 30 }}
+        >
+          {inWishlist(product._id) ? (
+            <MdFavorite className="text-primary text-xl" />
+          ) : (
+            <MdFavoriteBorder className="text-primary text-xl" />
+          )}
+        </motion.div>
+      </motion.button>
+    </motion.div>
   );
 }
 

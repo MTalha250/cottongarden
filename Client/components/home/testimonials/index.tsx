@@ -1,4 +1,6 @@
 import React from "react";
+import { motion } from "framer-motion";
+import { globalAnimations, viewportSettings } from "@/lib/animations";
 
 const Star = () => (
   <svg
@@ -35,49 +37,94 @@ const testimonials = [
 const Testimonials = () => {
   return (
     <section className="relative py-16 md:py-20 px-6 md:px-12 lg:px-24 overflow-hidden">
-      <div className="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-gradient-to-br from-rose-200 to-amber-100 blur-3xl opacity-60" />
-      <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-gradient-to-tr from-emerald-200 to-sky-100 blur-3xl opacity-60" />
+      <motion.div
+        className="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-gradient-to-br from-rose-200 to-amber-100 blur-3xl opacity-60"
+        {...globalAnimations.floating}
+      />
+      <motion.div
+        className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-gradient-to-tr from-emerald-200 to-sky-100 blur-3xl opacity-60"
+        {...globalAnimations.floating}
+        transition={{ delay: 1, duration: 4 }}
+      />
 
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-between mb-10 md:mb-12">
+        <motion.div
+          className="flex items-center justify-between mb-10 md:mb-12"
+          {...globalAnimations.slideUp}
+          whileInView="animate"
+          viewport={viewportSettings}
+        >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-mons tracking-tight text-primary">
             Our Happy Customers
           </h2>
           <div className="hidden sm:flex items-center gap-3 z-10">
-            <button className="h-10 w-10 rounded-full border border-gray-300 text-gray-700 hover:bg-gray-100">
+            <motion.button
+              className="h-10 w-10 rounded-full border border-gray-300 text-gray-700 hover:bg-gray-100"
+              {...globalAnimations.buttonHover}
+            >
               <span className="sr-only">Previous</span>
               <span aria-hidden>←</span>
-            </button>
-            <button className="h-10 w-10 rounded-full border border-gray-300 text-gray-700 hover:bg-gray-100">
+            </motion.button>
+            <motion.button
+              className="h-10 w-10 rounded-full border border-gray-300 text-gray-700 hover:bg-gray-100"
+              {...globalAnimations.buttonHover}
+            >
               <span className="sr-only">Next</span>
               <span aria-hidden>→</span>
-            </button>
+            </motion.button>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {testimonials.map((t) => (
-            <div
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+          variants={globalAnimations.staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={viewportSettings}
+        >
+          {testimonials.map((t, index) => (
+            <motion.div
               key={t.id}
               className="rounded-2xl border border-gray-200 bg-white p-6 md:p-8 shadow-sm z-10"
+              variants={globalAnimations.staggerChild}
+              whileHover={{ y: -5, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              <div className="flex items-center gap-1 text-amber-400">
+              <motion.div
+                className="flex items-center gap-1 text-amber-400"
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                transition={{
+                  delay: index * 0.1 + 0.5,
+                  type: "spring",
+                  stiffness: 500,
+                }}
+              >
                 {Array.from({ length: 5 }).map((_, idx) => (
                   <Star key={idx} />
                 ))}
-              </div>
+              </motion.div>
               <div className="mt-4 flex items-center gap-2">
                 <h3 className="text-lg md:text-xl font-semibold text-gray-900">
                   {t.name}
                 </h3>
-                <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-green-500 text-white text-xs">
+                <motion.span
+                  className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-green-500 text-white text-xs"
+                  initial={{ scale: 0, rotate: -180 }}
+                  whileInView={{ scale: 1, rotate: 0 }}
+                  transition={{
+                    delay: index * 0.1 + 0.7,
+                    type: "spring",
+                    stiffness: 500,
+                  }}
+                >
                   ✓
-                </span>
+                </motion.span>
               </div>
-              <p className="mt-3 text-gray-600 leading-relaxed">“{t.quote}”</p>
-            </div>
+              <p className="mt-3 text-gray-600 leading-relaxed">"{t.quote}"</p>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
