@@ -60,7 +60,7 @@ const page = () => {
     </motion.div>
   ) : product ? (
     <motion.section
-      className="pt-28 pb-16 px-6 md:px-12 lg:px-24"
+      className="pt-28 pb-16 px-6 md:px-12 xl:px-24"
       {...globalAnimations.fadeIn}
     >
       <SEO

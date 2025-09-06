@@ -36,7 +36,7 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section className="relative py-16 md:py-20 px-6 md:px-12 lg:px-24 overflow-hidden">
+    <section className="relative py-16 md:py-20 px-6 md:px-12 xl:px-24 overflow-hidden">
       <motion.div
         className="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-gradient-to-br from-rose-200 to-amber-100 blur-3xl opacity-60"
         {...globalAnimations.floating}

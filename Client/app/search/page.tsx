@@ -43,7 +43,7 @@ const page = () => {
   }, [page]);
 
   return (
-    <div className="pt-28 pb-12 px-6 md:px-12 lg:px-24">
+    <div className="pt-28 pb-12 px-6 md:px-12 xl:px-24">
       <SEO
         title="Search | Cotton Garden"
         description="Search Cotton Garden for breathable cotton essentials across mens, womens, and kids. Find styles by name, color, size, or category."

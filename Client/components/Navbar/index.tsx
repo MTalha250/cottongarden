@@ -10,11 +10,10 @@ import { CiShoppingCart } from "react-icons/ci";
 import { VscChevronDown } from "react-icons/vsc";
 import { motion, AnimatePresence } from "framer-motion";
 import useAuthStore from "@/store/authStore";
-import { logout } from "@/hooks/auth";
 import { Category } from "@/types";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { globalAnimations, viewportSettings } from "@/lib/animations";
+import { globalAnimations } from "@/lib/animations";
 
 const Navbar = () => {
   const { initCart, items } = useCartStore();
@@ -61,7 +60,7 @@ const Navbar = () => {
 
   return (
     <motion.div
-      className="top-0 z-50 fixed bg-white text-black border-b border-gray-200 px-6 md:px-16 lg:px-24 py-3 w-full flex items-center justify-between"
+      className="top-0 z-50 fixed bg-white text-black border-b border-gray-200 px-6 md:px-12 xl:px-24 py-3 w-full flex items-center justify-between"
       {...globalAnimations.navbarSlideDown}
     >
       <Link href="/">
@@ -132,7 +131,7 @@ const Navbar = () => {
             href="/sale"
             className="flex items-center border-b border-transparent hover:border-gray-900 transition-all duration-300 font-mons tracking-widest"
           >
-            On Sale
+            Sale
           </Link>
         )}
         <Link
@@ -155,8 +154,8 @@ const Navbar = () => {
         </Link>
       </div>
 
-      <div className="flex items-center space-x-3 md:space-x-5 font-medium">
-        <div className="hidden md:block">
+      <div className="flex items-center space-x-3 xl:space-x-5 font-medium">
+        <div className="hidden lg:block">
           <Search
             placeholders={[
               "Search by product name or category",

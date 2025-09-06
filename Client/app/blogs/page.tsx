@@ -58,7 +58,7 @@ const page = () => {
     fetchBlogs();
   }, [page, selected]);
   return (
-    <div className="pt-28 pb-10 px-6 md:px-12 lg:px-24">
+    <div className="pt-28 pb-10 px-6 md:px-12 xl:px-24">
       <SEO
         title="Blog | Cotton Garden"
         description="Stories and style notes from Cotton Garden. Explore fabric care, seasonal edits, and behind-the-scenes features."

@@ -54,7 +54,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="h-svh w-full bg-secondary px-4 sm:px-6 md:px-16 lg:px-24 flex flex-col md:flex-row relative overflow-hidden">
+    <div className="h-svh w-full bg-secondary px-4 sm:px-6 md:px-12 xl:px-24 flex flex-col md:flex-row relative overflow-hidden">
       {/* Animated background elements */}
       <motion.div
         className="absolute top-10 right-10 w-32 h-32 bg-primary/10 rounded-full opacity-60"
@@ -82,13 +82,13 @@ const Hero = () => {
         animate="animate"
       >
         <motion.h1
-          className="text-2xl sm:text-3xl md:text-5xl font-mons tracking-tight"
+          className="text-2xl sm:text-3xl lg:text-5xl font-mons tracking-tight"
           variants={globalAnimations.staggerChild}
         >
           FIND CLOTHES THAT <br /> MATCHES YOUR STYLE
         </motion.h1>
         <motion.p
-          className="text-sm sm:text-base md:text-lg lg:text-xl font-light max-w-xl"
+          className="text-sm sm:text-base lg:text-xl font-light max-w-xl"
           variants={globalAnimations.staggerChild}
         >
           Browse through our diverse range of meticulously crafted garments,
@@ -104,26 +104,28 @@ const Hero = () => {
           </Link>
         </motion.div>
         <motion.div
-          className="grid grid-cols-3 gap-4 mt-8 w-full"
+          className="grid grid-cols-3 gap-4 md:gap-0 lg:gap-4 mt-8 w-full"
           variants={globalAnimations.staggerChild}
         >
           <motion.div
             className="flex flex-col gap-1 items-center md:items-start"
             {...globalAnimations.hoverScale}
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-primary">
+            <h2 className="text-3xl sm:text-4xl md:text-3xl xl:text-5xl font-medium text-primary">
               {counters.brands}+
             </h2>
-            <p className="font-light text-xs sm:text-sm">Original Brands</p>
+            <p className="font-light text-xs sm:text-sm md:text-xs xl:text-sm">
+              Original Brands
+            </p>
           </motion.div>
           <motion.div
             className="flex flex-col gap-1 items-center md:items-start"
             {...globalAnimations.hoverScale}
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-primary">
+            <h2 className="text-3xl sm:text-4xl md:text-3xl xl:text-5xl font-medium text-primary">
               {counters.products.toLocaleString()}+
             </h2>
-            <p className="font-light text-xs sm:text-sm">
+            <p className="font-light text-xs sm:text-sm md:text-xs xl:text-sm">
               High Quality Products
             </p>
           </motion.div>
@@ -131,10 +133,12 @@ const Hero = () => {
             className="flex flex-col gap-1 items-center md:items-start"
             {...globalAnimations.hoverScale}
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-primary">
+            <h2 className="text-3xl sm:text-4xl md:text-3xl xl:text-5xl font-medium text-primary">
               {counters.customers.toLocaleString()}+
             </h2>
-            <p className="font-light text-xs sm:text-sm">Happy Customers</p>
+            <p className="font-light text-xs sm:text-sm md:text-xs xl:text-sm">
+              Happy Customers
+            </p>
           </motion.div>
         </motion.div>
       </motion.div>

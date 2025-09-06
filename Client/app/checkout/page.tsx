@@ -124,7 +124,7 @@ const page = () => {
 
   return (
     <motion.div
-      className="pt-28 pb-12 px-6 md:px-12 lg:px-24 min-h-screen"
+      className="pt-28 pb-12 px-6 md:px-12 xl:px-24 min-h-screen"
       {...globalAnimations.fadeIn}
     >
       <SEO

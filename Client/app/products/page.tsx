@@ -99,7 +99,7 @@ const page = () => {
   };
 
   return (
-    <section className="pt-28 pb-16 px-6 md:px-12 lg:px-24">
+    <section className="pt-28 pb-16 px-6 md:px-12 xl:px-24">
       <SEO
         title="Products | Cotton Garden"
         description="Explore Cotton Garden's collection of cotton essentials for men, women, and kids. Breathable fabrics, everyday comfort, and timeless style."

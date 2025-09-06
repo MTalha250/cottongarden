@@ -15,7 +15,7 @@ const CartPage = () => {
 
   return (
     <motion.section
-      className="pt-28 pb-12 px-6 md:px-12 lg:px-24"
+      className="pt-28 pb-12 px-6 md:px-12 xl:px-24"
       {...globalAnimations.fadeIn}
     >
       <SEO

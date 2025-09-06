@@ -27,7 +27,7 @@ const page = () => {
   }, []);
 
   return (
-    <section className="pt-28 pb-12 px-6 md:px-12 lg:px-24">
+    <section className="pt-28 pb-12 px-6 md:px-12 xl:px-24">
       <SEO
         title="Sale | Cotton Garden"
         description="Save on breathable cotton essentials for men, women, and kids. Limited-time offers on tees, dresses, chinos, and more."

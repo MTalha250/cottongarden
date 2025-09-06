@@ -52,7 +52,7 @@ const Discover = () => {
     },
   };
   return (
-    <section className="relative px-6 md:px-12 lg:px-24 py-16 md:py-20 overflow-hidden">
+    <section className="relative px-6 md:px-12 xl:px-24 py-16 md:py-20 overflow-hidden">
       <motion.div
         className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-gradient-to-br from-rose-200 to-amber-100 blur-3xl opacity-60"
         animate={{

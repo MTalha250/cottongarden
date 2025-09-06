@@ -45,7 +45,7 @@ const page = () => {
   }, [page]);
 
   return (
-    <div className="pt-28 pb-10 px-6 md:px-12 lg:px-24">
+    <div className="pt-28 pb-10 px-6 md:px-12 xl:px-24">
       <SEO
         title="Search Results | Cotton Garden"
         description="Find Cotton Garden styles across mens, womens, and kids. Search by name, color, size, or category."

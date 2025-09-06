@@ -7,7 +7,7 @@ import SEO from "@/components/seo";
 const AboutUs = () => {
   return (
     <motion.div
-      className="relative pt-28 pb-10 px-6 md:px-12 lg:px-24"
+      className="relative pt-28 pb-10 px-6 md:px-12 xl:px-24"
       {...globalAnimations.fadeIn}
     >
       <SEO

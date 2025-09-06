@@ -12,7 +12,7 @@ const WishlistPage = () => {
   const { user } = useAuthStore();
 
   return (
-    <section className="pt-28 pb-12 px-6 md:px-12 lg:px-24">
+    <section className="pt-28 pb-12 px-6 md:px-12 xl:px-24">
       <SEO
         title="Your Wishlist | Cotton Garden"
         description="View and manage items you love at Cotton Garden."

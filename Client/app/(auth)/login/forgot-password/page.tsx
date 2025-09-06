@@ -118,7 +118,7 @@ const page = () => {
 
   return (
     <motion.section
-      className="relative min-h-screen px-6 md:px-12 lg:px-24 py-12 flex items-center justify-center"
+      className="relative min-h-screen px-6 md:px-12 xl:px-24 py-12 flex items-center justify-center"
       {...globalAnimations.fadeIn}
     >
       <SEO

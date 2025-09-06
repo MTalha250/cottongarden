@@ -26,7 +26,7 @@ const Page = () => {
   }, [id]);
 
   return (
-    <div className="px-6 md:px-12 lg:px-24 pt-28 pb-20">
+    <div className="px-6 md:px-12 xl:px-24 pt-28 pb-20">
       <SEO
         title={blog?.title}
         description={blog?.description}

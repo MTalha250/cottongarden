@@ -33,7 +33,7 @@ const Sidebar = ({ categories }: { categories: Category[] }) => {
 
   return (
     <Sheet>
-      <SheetTrigger className="md:hidden">
+      <SheetTrigger className="lg:hidden">
         <HiBars3 className="inline-block text-3xl hover:scale-125 transition duration-200" />
       </SheetTrigger>
       <SheetContent className="p-0 bg-white/95 backdrop-blur-md rounded-l-2xl shadow-2xl">

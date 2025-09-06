@@ -55,7 +55,7 @@ const Footer = () => {
       viewport={viewportSettings}
     >
       <motion.div
-        className="px-6 md:px-16 lg:px-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10"
+        className="px-6 md:px-12 xl:px-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10"
         variants={globalAnimations.staggerContainer}
         initial="initial"
         whileInView="animate"
@@ -237,7 +237,7 @@ const Footer = () => {
         viewport={viewportSettings}
         transition={{ delay: 0.5, duration: 0.6 }}
       >
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-6 md:px-12 lg:px-24">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-6 md:px-12 xl:px-24">
           <p className="font-light">
             © 2025 Cotton Garden. All rights reserved.
           </p>
